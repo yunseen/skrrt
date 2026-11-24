@@ -117,11 +117,7 @@ final class Tab: Identifiable {
             webView.observe(\.isLoading) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
             webView.observe(\.canGoBack) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
             webView.observe(\.canGoForward) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
-            webView.observe(\.hasOnlySecureContent) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
-            webView.scrollView.observe(\.contentOffset, options: [.new]) { [weak self] _, change in
-                guard let offset = change.newValue?.y else { return }
-                Task { @MainActor in self?.scrolled(to: offset) }
-            }
+            webView.observe(\.hasOnlySecureContent) { [weak self] _, _ in Task { @MainActor in self?.syncState() } }
         ]
     }
 
