@@ -6,19 +6,29 @@ import Observation
 final class TabStore {
     private(set) var tabs: [Tab] = []
     private(set) var selectedID: Tab.ID?
+    private(set) var isStarted = false
 
     @ObservationIgnored var recorder: (@MainActor (String, URL) -> Void)?
     @ObservationIgnored private let settings: Settings
+    @ObservationIgnored private let extensions: ExtensionStore
     @ObservationIgnored private let blocker = ContentBlocker()
     @ObservationIgnored private let sessionKey = "session.tabs"
 
-    init(settings: Settings) {
+    init(settings: Settings, extensions: ExtensionStore) {
         self.settings = settings
-        restore()
+        self.extensions = extensions
     }
 
     var current: Tab? {
         tabs.first { $0.id == selectedID }
+    }
+
+    /// Web views must be created after the scene is on screen. Creating a WKWebView
+    /// during App.init makes UIKit crash on the first touch once it is displayed.
+    func start() {
+        guard !isStarted else { return }
+        isStarted = true
+        restore()
     }
 
     func prepare() async {
@@ -70,19 +80,30 @@ final class TabStore {
     }
 
     func applyUserAgent() {
-        for tab in tabs {
-            tab.applyUserAgent(settings.userAgent)
-        }
+        applyPreferences()
         current?.reload()
     }
 
+    func applyPreferences() {
+        let scripts = extensions.makeScripts()
+        for tab in tabs {
+            tab.applyPreferences(settings, scripts: scripts)
+        }
+    }
+
     func submit(_ input: String, in tab: Tab) {
-        guard let url = SearchEngine.resolve(input) else { return }
+        guard let url = SearchEngine.resolve(input, template: settings.searchTemplate) else { return }
         tab.load(url)
     }
 
+    func closeAll() {
+        tabs.removeAll()
+        selectedID = nil
+        open()
+    }
+
     private func attach(_ tab: Tab) {
-        tab.applyUserAgent(settings.userAgent)
+        tab.applyPreferences(settings, scripts: extensions.makeScripts())
         blocker.apply(to: tab, enabled: settings.blocksContent)
         tab.onVisit = { [weak self] title, url in self?.recorder?(title, url) }
         tab.onOpenTab = { [weak self] url in self?.open(url) }
@@ -90,6 +111,7 @@ final class TabStore {
     }
 
     private func persist() {
+        guard isStarted else { return }
         let saved = tabs.filter { !$0.isPrivate }
         let session = Session(
             tabs: saved.map { SavedTab(url: $0.url?.absoluteString, title: $0.title) },

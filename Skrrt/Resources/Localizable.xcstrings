@@ -540,6 +540,686 @@
           }
         }
       }
+    },
+    "Custom": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Свой"
+          }
+        }
+      }
+    },
+    "Night Curtain": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ночной занавес"
+          }
+        }
+      }
+    },
+    "Ice": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Лёд"
+          }
+        }
+      }
+    },
+    "Aurora": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аврора"
+          }
+        }
+      }
+    },
+    "My Photo": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Моё фото"
+          }
+        }
+      }
+    },
+    "Rounded": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скруглённые"
+          }
+        }
+      }
+    },
+    "Circle": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Круг"
+          }
+        }
+      }
+    },
+    "Off": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выкл."
+          }
+        }
+      }
+    },
+    "Match App": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Как приложение"
+          }
+        }
+      }
+    },
+    "Always": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Всегда"
+          }
+        }
+      }
+    },
+    "Extensions": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Расширения"
+          }
+        }
+      }
+    },
+    "Hide cookie banners, force dark mode or add your own scripts and styles.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрывайте баннеры cookie, включайте тёмный режим или добавляйте свои скрипты и стили."
+          }
+        }
+      }
+    },
+    "Search Suggestions": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подсказки при поиске"
+          }
+        }
+      }
+    },
+    "Put %s where the search words should go. Suggestions and results use the same engine.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вставьте %s туда, где должен быть запрос. Подсказки и результаты используют один движок."
+          }
+        }
+      }
+    },
+    "Suggestions and results use the same engine.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подсказки и результаты используют один поисковый движок."
+          }
+        }
+      }
+    },
+    "Home Screen": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Главный экран"
+          }
+        }
+      }
+    },
+    "Wallpaper": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обои"
+          }
+        }
+      }
+    },
+    "Choose Photo": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выбрать фото"
+          }
+        }
+      }
+    },
+    "Blur": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Размытие"
+          }
+        }
+      }
+    },
+    "Animate Wallpaper": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Анимация обоев"
+          }
+        }
+      }
+    },
+    "Show Mascots": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показывать маскотов"
+          }
+        }
+      }
+    },
+    "Tile Shape": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Форма иконок"
+          }
+        }
+      }
+    },
+    "Show Tile Names": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подписи под иконками"
+          }
+        }
+      }
+    },
+    "Columns: %lld": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Колонок: %lld"
+          }
+        }
+      }
+    },
+    "Reset Shortcuts": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сбросить ярлыки"
+          }
+        }
+      }
+    },
+    "Touch and hold a shortcut on the home screen to edit or delete it. Tap Add to create your own and the logo is found automatically.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Зажмите ярлык на главном экране, чтобы изменить или удалить его. Нажмите «Добавить», чтобы создать свой: логотип найдётся сам."
+          }
+        }
+      }
+    },
+    "Restore the default shortcuts?": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вернуть стандартные ярлыки?"
+          }
+        }
+      }
+    },
+    "Custom Color": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Свой цвет"
+          }
+        }
+      }
+    },
+    "Dark Pages": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тёмные страницы"
+          }
+        }
+      }
+    },
+    "Dark Pages asks websites for their dark version, including search results.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Просит сайты показывать тёмную версию, в том числе выдачу поиска."
+          }
+        }
+      }
+    },
+    "Upgrade to HTTPS": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Переходить на HTTPS"
+          }
+        }
+      }
+    },
+    "Remove Tracking Parameters": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убирать трекинг-параметры"
+          }
+        }
+      }
+    },
+    "Block Pop-ups": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Блокировать всплывающие окна"
+          }
+        }
+      }
+    },
+    "Clear Data on Launch": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Очищать данные при запуске"
+          }
+        }
+      }
+    },
+    "Hidden addresses appear as dots in tab and library lists. Touch and hold one to reveal it for five seconds. Tracking parameters are links like utm_source or fbclid.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрытые адреса показываются точками в списках вкладок и библиотеки. Зажмите адрес, чтобы увидеть его на пять секунд. Трекинг-параметры — это utm_source, fbclid и подобные."
+          }
+        }
+      }
+    },
+    "Built-in": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Встроенные"
+          }
+        }
+      }
+    },
+    "My Extensions": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мои расширения"
+          }
+        }
+      }
+    },
+    "Add Script or Style": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавить скрипт или стиль"
+          }
+        }
+      }
+    },
+    "Chrome and Safari extension packages cannot run in this browser. Scripts and styles you add here run on the sites you choose.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пакеты расширений Chrome и Safari здесь не работают. Скрипты и стили, которые вы добавите, выполняются на выбранных сайтах."
+          }
+        }
+      }
+    },
+    "Name": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Название"
+          }
+        }
+      }
+    },
+    "Website, for example example.com": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сайт, например example.com"
+          }
+        }
+      }
+    },
+    "Type": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тип"
+          }
+        }
+      }
+    },
+    "Script": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрипт"
+          }
+        }
+      }
+    },
+    "Style": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Стиль"
+          }
+        }
+      }
+    },
+    "Leave the website empty to run on every site.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оставьте сайт пустым, чтобы работало везде."
+          }
+        }
+      }
+    },
+    "Code": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Код"
+          }
+        }
+      }
+    },
+    "New Extension": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Новое расширение"
+          }
+        }
+      }
+    },
+    "Edit Extension": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изменить расширение"
+          }
+        }
+      }
+    },
+    "Save": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сохранить"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить"
+          }
+        }
+      }
+    },
+    "Edit": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изменить"
+          }
+        }
+      }
+    },
+    "Add": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавить"
+          }
+        }
+      }
+    },
+    "Force Dark Mode": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Принудительный тёмный режим"
+          }
+        }
+      }
+    },
+    "Inverts light pages that have no dark theme": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Инвертирует светлые страницы без тёмной темы"
+          }
+        }
+      }
+    },
+    "Hide Cookie Banners": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрывать баннеры cookie"
+          }
+        }
+      }
+    },
+    "Hides common consent pop-ups": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прячет типичные окна согласия"
+          }
+        }
+      }
+    },
+    "Clean Search Pages": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чистые страницы поиска"
+          }
+        }
+      }
+    },
+    "Hides the search engine logo on result pages": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прячет логотип поисковика на страницах результатов"
+          }
+        }
+      }
+    },
+    "All sites": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все сайты"
+          }
+        }
+      }
+    },
+    "New Shortcut": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Новый ярлык"
+          }
+        }
+      }
+    },
+    "Edit Shortcut": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изменить ярлык"
+          }
+        }
+      }
+    },
+    "Website address": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Адрес сайта"
+          }
+        }
+      }
+    },
+    "Name (optional)": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Название (необязательно)"
+          }
+        }
+      }
+    },
+    "The logo is found automatically from the website.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Логотип подбирается автоматически с сайта."
+          }
+        }
+      }
+    },
+    "Looking for the logo…": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ищу логотип…"
+          }
+        }
+      }
+    },
+    "Type a search or a website address": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Введите запрос или адрес сайта"
+          }
+        }
+      }
+    },
+    "Open %@": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть %@"
+          }
+        }
+      }
+    },
+    "Go": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перейти"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

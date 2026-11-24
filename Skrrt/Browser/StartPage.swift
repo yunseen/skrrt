@@ -3,123 +3,265 @@ import SwiftUI
 struct StartPage: View {
     let tab: Tab
 
+    @Environment(Settings.self) private var settings
+    @Environment(ShortcutStore.self) private var shortcuts
     @State private var appeared = false
-
-    private let favorites: [Favorite] = [
-        Favorite(title: "Google", url: "https://www.google.com", icon: .asset("FaviconGoogle")),
-        Favorite(title: "YouTube", url: "https://www.youtube.com", icon: .asset("FaviconYouTube")),
-        Favorite(title: "Wikipedia", url: "https://www.wikipedia.org", icon: .asset("FaviconWikipedia")),
-        Favorite(title: "GitHub", url: "https://github.com", icon: .asset("FaviconGitHub")),
-        Favorite(title: "Reddit", url: "https://www.reddit.com", icon: .asset("FaviconReddit")),
-        Favorite(title: "Maps", url: "https://maps.google.com", icon: .asset("FaviconMaps")),
-        Favorite(title: "News", url: "https://news.google.com", icon: .asset("FaviconNews")),
-        Favorite(title: "Mail", url: "https://mail.google.com", icon: .symbol("envelope.fill", Color(red: 0.92, green: 0.26, blue: 0.21)))
-    ]
+    @State private var draft: ShortcutDraft?
 
     var body: some View {
-        ZStack {
-            AuroraBackground()
-            VStack(spacing: 30) {
-                Spacer()
-                header
-                if !tab.isPrivate {
-                    grid
+        GeometryReader { proxy in
+            ZStack {
+                WallpaperView()
+                if settings.showsMascots && !tab.isPrivate {
+                    MascotScene()
+                        .ignoresSafeArea()
+                        .allowsHitTesting(false)
                 }
-                Spacer()
-                Spacer(minLength: Metrics.barHeight)
+                VStack(spacing: 0) {
+                    Color.clear.frame(height: proxy.size.height * 0.46)
+                    if tab.isPrivate {
+                        privateHeader
+                    } else {
+                        ScrollView(showsIndicators: false) {
+                            grid
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 6)
+                        }
+                    }
+                    Spacer(minLength: Metrics.barHeight + 8)
+                }
             }
-            .padding(.horizontal, 28)
+        }
+        .sheet(item: $draft) { draft in
+            ShortcutEditor(draft: draft)
         }
         .onAppear {
             withAnimation(.smooth(duration: 0.9)) { appeared = true }
         }
     }
 
-    private var header: some View {
-        VStack(spacing: 18) {
-            if tab.isPrivate {
-                Image(systemName: "eye.slash.fill")
-                    .font(.system(size: 54, weight: .semibold))
-                    .foregroundStyle(Palette.blue)
-                Text("Private Tab")
-                    .font(.title2.weight(.bold))
-                Text("History and website data are not saved.")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
-            } else {
-                Image("LogoMark")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 96, height: 96)
-                    .foregroundStyle(Palette.blue)
-                Image("Wordmark")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 26)
-                    .foregroundStyle(.primary)
-            }
+    private var labelColor: Color {
+        settings.wallpaper == .ice ? Color.black.opacity(0.72) : Color.white.opacity(0.9)
+    }
+
+    private var privateHeader: some View {
+        VStack(spacing: 14) {
+            Image(systemName: "eye.slash.fill")
+                .font(.system(size: 48, weight: .semibold))
+                .foregroundStyle(Color.accentColor)
+            Text("Private Tab")
+                .font(.title2.weight(.bold))
+                .foregroundStyle(labelColor)
+            Text("History and website data are not saved.")
+                .font(.subheadline)
+                .foregroundStyle(labelColor.opacity(0.7))
+                .multilineTextAlignment(.center)
         }
-        .scaleEffect(appeared ? 1 : 0.9)
+        .padding(.horizontal, 32)
+        .frame(maxWidth: .infinity)
         .opacity(appeared ? 1 : 0)
     }
 
     private var grid: some View {
-        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 4), spacing: 20) {
-            ForEach(Array(favorites.enumerated()), id: \.offset) { index, favorite in
-                tile(favorite)
+        let columns = Array(repeating: GridItem(.flexible(), spacing: 14), count: max(3, min(5, settings.tileColumns)))
+        return LazyVGrid(columns: columns, spacing: 18) {
+            ForEach(Array(shortcuts.items.enumerated()), id: \.element.id) { index, shortcut in
+                tile(shortcut)
                     .opacity(appeared ? 1 : 0)
                     .offset(y: appeared ? 0 : 16)
-                    .animation(.smooth(duration: 0.6).delay(0.15 + Double(index) * 0.04), value: appeared)
+                    .animation(.smooth(duration: 0.6).delay(0.1 + Double(min(index, 12)) * 0.04), value: appeared)
             }
+            addTile
+                .opacity(appeared ? 1 : 0)
         }
     }
 
-    private func tile(_ favorite: Favorite) -> some View {
+    private var tileShape: AnyShape {
+        settings.tileShape == .circle ? AnyShape(Circle()) : AnyShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+    }
+
+    private func tile(_ shortcut: Shortcut) -> some View {
         Button {
-            if let url = URL(string: favorite.url) {
+            if let url = shortcut.url {
                 tab.load(url)
             }
         } label: {
             VStack(spacing: 8) {
-                icon(favorite.icon)
+                icon(shortcut)
                     .frame(width: 60, height: 60)
-                    .glassEffect(.regular, in: .rect(cornerRadius: 20))
-                Text(favorite.title)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                    .glassEffect(.regular, in: tileShape)
+                if settings.showsTileTitles {
+                    Text(verbatim: shortcut.title)
+                        .font(.caption)
+                        .foregroundStyle(labelColor)
+                        .lineLimit(1)
+                }
+            }
+        }
+        .buttonStyle(PressStyle())
+        .contextMenu {
+            Button("Edit", systemImage: "pencil") {
+                draft = ShortcutDraft(existing: shortcut)
+            }
+            Button("Delete", systemImage: "trash", role: .destructive) {
+                withAnimation(.smooth) { shortcuts.remove(shortcut) }
+            }
+        }
+    }
+
+    private var addTile: some View {
+        Button {
+            draft = ShortcutDraft(existing: nil)
+        } label: {
+            VStack(spacing: 8) {
+                Image(systemName: "plus")
+                    .font(.system(size: 22, weight: .semibold))
+                    .foregroundStyle(labelColor)
+                    .frame(width: 60, height: 60)
+                    .glassEffect(.regular, in: tileShape)
+                if settings.showsTileTitles {
+                    Text("Add")
+                        .font(.caption)
+                        .foregroundStyle(labelColor.opacity(0.8))
+                        .lineLimit(1)
+                }
             }
         }
         .buttonStyle(PressStyle())
     }
 
     @ViewBuilder
-    private func icon(_ icon: Favorite.Icon) -> some View {
-        switch icon {
-        case .asset(let name):
-            Image(name)
+    private func icon(_ shortcut: Shortcut) -> some View {
+        if let image = shortcuts.icon(for: shortcut) {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 36, height: 36)
+                .clipShape(RoundedRectangle(cornerRadius: 9, style: .continuous))
+        } else if let asset = shortcut.asset {
+            Image(asset)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 34, height: 34)
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-        case .symbol(let name, let color):
-            Image(systemName: name)
-                .font(.system(size: 18, weight: .bold))
+        } else {
+            Text(verbatim: String(shortcut.title.prefix(1)).uppercased())
+                .font(.system(size: 22, weight: .bold))
                 .foregroundStyle(.white)
-                .frame(width: 34, height: 34)
-                .background(color, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+                .frame(width: 36, height: 36)
+                .background(Color.accentColor, in: RoundedRectangle(cornerRadius: 9, style: .continuous))
+        }
+    }
+}
+
+struct ShortcutDraft: Identifiable {
+    let id = UUID()
+    let existing: Shortcut?
+}
+
+struct ShortcutEditor: View {
+    let draft: ShortcutDraft
+
+    @Environment(\.dismiss) private var dismiss
+    @Environment(ShortcutStore.self) private var shortcuts
+    @State private var address = ""
+    @State private var title = ""
+    @State private var icon: UIImage?
+    @State private var isLoading = false
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    HStack(spacing: 14) {
+                        preview
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(verbatim: title.isEmpty ? (IconFetcher.normalize(address)?.displayHost ?? "") : title)
+                                .font(.headline)
+                                .lineLimit(1)
+                            if isLoading {
+                                Text("Looking for the logo…")
+                                    .font(.footnote)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
+                Section {
+                    TextField("Website address", text: $address)
+                        .keyboardType(.URL)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                    TextField("Name (optional)", text: $title)
+                } footer: {
+                    Text("The logo is found automatically from the website.")
+                }
+            }
+            .navigationTitle(draft.existing == nil ? "New Shortcut" : "Edit Shortcut")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel") { dismiss() }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Save", action: save)
+                        .disabled(IconFetcher.normalize(address) == nil)
+                }
+            }
+        }
+        .presentationDetents([.medium])
+        .onAppear {
+            if let existing = draft.existing {
+                address = existing.urlString
+                title = existing.title
+                icon = shortcuts.icon(for: existing)
+            }
+        }
+        .task(id: address) {
+            guard let url = IconFetcher.normalize(address) else {
+                if draft.existing == nil { icon = nil }
+                return
+            }
+            if let existing = draft.existing, existing.urlString == url.absoluteString { return }
+            try? await Task.sleep(for: .milliseconds(600))
+            guard !Task.isCancelled else { return }
+            isLoading = true
+            let found = await IconFetcher.fetch(for: url)
+            guard !Task.isCancelled else { return }
+            isLoading = false
+            icon = found
         }
     }
 
-    private struct Favorite {
-        enum Icon {
-            case asset(String)
-            case symbol(String, Color)
+    @ViewBuilder
+    private var preview: some View {
+        Group {
+            if let icon {
+                Image(uiImage: icon)
+                    .resizable()
+                    .scaledToFill()
+            } else if isLoading {
+                ProgressView()
+            } else {
+                Image(systemName: "globe")
+                    .font(.system(size: 24))
+                    .foregroundStyle(.secondary)
+            }
         }
+        .frame(width: 56, height: 56)
+        .background(Color.primary.opacity(0.08))
+        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+    }
 
-        let title: LocalizedStringKey
-        let url: String
-        let icon: Icon
+    private func save() {
+        guard let url = IconFetcher.normalize(address) else { return }
+        let name = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        let finalTitle = name.isEmpty ? url.displayHost : name
+        if let existing = draft.existing {
+            shortcuts.update(existing, title: finalTitle, url: url, icon: icon)
+        } else {
+            shortcuts.add(title: finalTitle, url: url, icon: icon)
+        }
+        dismiss()
     }
 }

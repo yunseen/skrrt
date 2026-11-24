@@ -3,12 +3,13 @@ import SwiftUI
 struct BottomBar: View {
     let tab: Tab
     let showSwitcher: () -> Void
+    let showSearch: () -> Void
     let openSheet: (Sheet) -> Void
     let addBookmark: () -> Void
 
     var body: some View {
         VStack(spacing: 12) {
-            AddressBar(tab: tab)
+            AddressBar(tab: tab, openSearch: showSearch)
             if !tab.isCompact {
                 ToolbarRow(
                     tab: tab,

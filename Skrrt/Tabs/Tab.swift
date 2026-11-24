@@ -95,6 +95,21 @@ final class Tab: Identifiable {
         delegate.prefersDesktop = mode == .desktop
     }
 
+    func applyPreferences(_ settings: Settings, scripts: [WKUserScript]) {
+        applyUserAgent(settings.userAgent)
+        webView.overrideUserInterfaceStyle = settings.webStyle
+        delegate.allowsJavaScript = settings.allowsJavaScript
+        delegate.blocksPopups = settings.blocksPopups
+        let upgrade = settings.upgradesHTTPS
+        let strip = settings.stripsTracking
+        delegate.rewrite = { url in URLCleaner.rewrite(url, upgradeHTTPS: upgrade, stripTracking: strip) }
+        let controller = webView.configuration.userContentController
+        controller.removeAllUserScripts()
+        for script in scripts {
+            controller.addUserScript(script)
+        }
+    }
+
     func captureSnapshot() async {
         guard url != nil, webView.window != nil else { return }
         let configuration = WKSnapshotConfiguration()

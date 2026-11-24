@@ -4,8 +4,13 @@ import WebKit
 @MainActor
 final class WebDelegate: NSObject, WKNavigationDelegate, WKUIDelegate {
     var prefersDesktop = false
+    var allowsJavaScript = true
+    var blocksPopups = false
+    var rewrite: ((URL) -> URL?)?
     var onFinish: (@MainActor () -> Void)?
     var onOpen: (@MainActor (URL) -> Void)?
+
+    private var rewritten: [String: Date] = [:]
 
     private static let webSchemes: Set<String> = ["http", "https", "about", "blob", "data", "file", "javascript"]
 
@@ -20,7 +25,22 @@ final class WebDelegate: NSObject, WKNavigationDelegate, WKUIDelegate {
             _ = await UIApplication.shared.open(url)
             return (.cancel, preferences)
         }
+
+        if navigationAction.targetFrame?.isMainFrame ?? true,
+           navigationAction.request.httpMethod == "GET" || navigationAction.request.httpMethod == nil,
+           let url = navigationAction.request.url,
+           let cleaned = rewrite?(url), cleaned != url {
+            let key = url.absoluteString
+            let recent = rewritten[key].map { Date().timeIntervalSince($0) < 10 } ?? false
+            if !recent {
+                rewritten[key] = Date()
+                webView.load(URLRequest(url: cleaned))
+                return (.cancel, preferences)
+            }
+        }
+
         preferences.preferredContentMode = prefersDesktop ? .desktop : .mobile
+        preferences.allowsContentJavaScript = allowsJavaScript
         return (.allow, preferences)
     }
 
@@ -36,12 +56,19 @@ final class WebDelegate: NSObject, WKNavigationDelegate, WKUIDelegate {
         show(error, in: webView)
     }
 
+    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        webView.reload()
+    }
+
     func webView(
         _ webView: WKWebView,
         createWebViewWith configuration: WKWebViewConfiguration,
         for navigationAction: WKNavigationAction,
         windowFeatures: WKWindowFeatures
     ) -> WKWebView? {
+        if blocksPopups && navigationAction.navigationType != .linkActivated {
+            return nil
+        }
         if let url = navigationAction.request.url {
             onOpen?(url)
         }

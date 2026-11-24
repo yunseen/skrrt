@@ -15,7 +15,7 @@ struct TabSwitcherView: View {
     var body: some View {
         ZStack {
             Palette.background.ignoresSafeArea()
-            AuroraBackground().ignoresSafeArea()
+            WallpaperView()
             ScrollView {
                 if visible.isEmpty {
                     ContentUnavailableView(
@@ -71,7 +71,7 @@ struct TabSwitcherView: View {
                     .foregroundStyle(.white)
                     .padding(.horizontal, 26)
                     .frame(height: Metrics.controlSize)
-                    .glassEffect(.regular.tint(Palette.blue), in: .capsule)
+                    .glassEffect(.regular.tint(Color.accentColor), in: .capsule)
             }
             .buttonStyle(PressStyle())
         }

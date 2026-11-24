@@ -3,6 +3,7 @@ import SwiftUI
 
 struct BrowserView: View {
     let showSwitcher: () -> Void
+    let showSearch: () -> Void
     let openSheet: (Sheet) -> Void
 
     @Environment(TabStore.self) private var tabs
@@ -22,6 +23,7 @@ struct BrowserView: View {
                 BottomBar(
                     tab: tab,
                     showSwitcher: showSwitcher,
+                    showSearch: showSearch,
                     openSheet: openSheet,
                     addBookmark: { addBookmark(for: tab) }
                 )

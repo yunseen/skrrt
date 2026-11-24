@@ -16,7 +16,7 @@ struct TabCard: View {
                 .clipShape(RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous))
                 .overlay {
                     RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
-                        .strokeBorder(isSelected ? Palette.blue : Color.primary.opacity(0.12), lineWidth: isSelected ? 3 : 1)
+                        .strokeBorder(isSelected ? Color.accentColor : Color.primary.opacity(0.12), lineWidth: isSelected ? 3 : 1)
                 }
         }
         .buttonStyle(.plain)
@@ -45,7 +45,7 @@ struct TabCard: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 56)
-                    .foregroundStyle(Palette.blue.opacity(0.8))
+                    .foregroundStyle(Color.accentColor.opacity(0.8))
             }
             .frame(height: 230)
         }
@@ -56,7 +56,7 @@ struct TabCard: View {
             if tab.isPrivate {
                 Image(systemName: "eye.slash.fill")
                     .font(.system(size: 11))
-                    .foregroundStyle(Palette.blue)
+                    .foregroundStyle(Color.accentColor)
             }
             Group {
                 if tab.displayTitle.isEmpty {

@@ -16,7 +16,6 @@ struct GeneralSection: View {
                     Text(mode.title).tag(mode)
                 }
             }
-            LabeledContent("Search Engine", value: "Google")
         } header: {
             Text("General")
         } footer: {

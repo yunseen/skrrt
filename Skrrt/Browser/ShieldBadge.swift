@@ -58,7 +58,7 @@ struct ShieldBadge: View {
 
         var tint: Color {
             switch self {
-            case .privateTab, .protected: Palette.blue
+            case .privateTab, .protected: Color.accentColor
             case .exposed, .open: .primary
             }
         }
