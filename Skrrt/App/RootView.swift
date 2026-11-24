@@ -14,8 +14,14 @@ struct RootView: View {
     @Environment(\.modelContext) private var context
 
     var body: some View {
-        if let tab = tabs.current {
-            WebContainer(webView: tab.webView, bottomInset: 0).ignoresSafeArea().task { tab.load(URL(string: "https://example.com")!) }
+        ZStack {
+            Color.clear
+            if let tab = tabs.current {
+                WebContainer(webView: tab.webView, bottomInset: 0)
+                    .ignoresSafeArea()
+                    .task { tab.load(URL(string: "https://example.com")!) }
+            }
         }
+        .task { tabs.start() }
     }
 }

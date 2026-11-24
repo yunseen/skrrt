@@ -14,6 +14,11 @@ final class TabStore {
 
     init(settings: Settings) {
         self.settings = settings
+
+    }
+
+    func start() {
+        guard tabs.isEmpty else { return }
         restore()
     }
 
