@@ -30,7 +30,6 @@ struct HomeScreenSection: View {
                 Slider(value: $settings.wallpaperBlur, in: 0...40, step: 1)
             }
             Toggle("Animate Wallpaper", isOn: $settings.animatesWallpaper)
-            Toggle("Show Mascots", isOn: $settings.showsMascots)
             Picker("Tile Shape", selection: $settings.tileShape) {
                 ForEach(TileShape.allCases) { shape in
                     Text(shape.title).tag(shape)

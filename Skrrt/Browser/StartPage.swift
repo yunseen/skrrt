@@ -12,13 +12,8 @@ struct StartPage: View {
         GeometryReader { proxy in
             ZStack {
                 WallpaperView()
-                if settings.showsMascots && !tab.isPrivate {
-                    MascotScene()
-                        .ignoresSafeArea()
-                        .allowsHitTesting(false)
-                }
                 VStack(spacing: 0) {
-                    Color.clear.frame(height: proxy.size.height * 0.46)
+                    Color.clear.frame(height: proxy.size.height * 0.30)
                     if tab.isPrivate {
                         privateHeader
                     } else {
