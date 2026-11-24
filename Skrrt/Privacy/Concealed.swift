@@ -9,19 +9,15 @@ private struct Concealed: ViewModifier {
 
     func body(content: Content) -> some View {
         let isHidden = settings.hidesAddresses && !isRevealed
-        content
-            .opacity(isHidden ? 0 : 1)
-            .blur(radius: isHidden ? 6 : 0)
-            .overlay {
-                if isHidden {
-                    DotField().transition(.opacity)
-                }
-            }
-            .animation(.smooth(duration: 0.4), value: isHidden)
-            .simultaneousGesture(
-                LongPressGesture(minimumDuration: 0.4).onEnded { _ in reveal() },
-                including: isHidden ? .gesture : .none
-            )
+        if isHidden {
+            content
+                .opacity(0)
+                .overlay { DotField().transition(.opacity) }
+                .animation(.smooth(duration: 0.4), value: isHidden)
+                .onLongPressGesture(minimumDuration: 0.4) { reveal() }
+        } else {
+            content
+        }
     }
 
     private func reveal() {
