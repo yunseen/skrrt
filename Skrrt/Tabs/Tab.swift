@@ -99,7 +99,12 @@ final class Tab: Identifiable {
         guard url != nil, webView.window != nil else { return }
         let configuration = WKSnapshotConfiguration()
         configuration.snapshotWidth = 420
-        if let image = try? await webView.takeSnapshot(configuration: configuration) {
+        let image: UIImage? = await withCheckedContinuation { continuation in
+            webView.takeSnapshot(with: configuration) { image, _ in
+                continuation.resume(returning: image)
+            }
+        }
+        if let image {
             snapshot = image
         }
     }
