@@ -6,6 +6,11 @@ struct GeneralSection: View {
     var body: some View {
         @Bindable var settings = settings
         Section {
+            Picker("Language", selection: $settings.language) {
+                ForEach(Language.allCases) { language in
+                    Text(language.title).tag(language)
+                }
+            }
             Picker("Site Mode", selection: $settings.userAgent) {
                 ForEach(UserAgentMode.allCases) { mode in
                     Text(mode.title).tag(mode)

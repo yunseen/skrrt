@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 enum UserAgentMode: String, CaseIterable, Identifiable {
     case safari
@@ -7,7 +7,7 @@ enum UserAgentMode: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
         case .safari: "Safari"
         case .chrome: "Chrome"

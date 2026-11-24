@@ -12,15 +12,15 @@ struct ToolbarRow: View {
     var body: some View {
         HStack(spacing: 0) {
             GlassIconButton(symbol: "chevron.backward", isEnabled: tab.canGoBack) { tab.goBack() }
-            Spacer(minLength: 0)
+            Spacer(minLength: 4)
             GlassIconButton(symbol: "chevron.forward", isEnabled: tab.canGoForward) { tab.goForward() }
-            Spacer(minLength: 0)
+            Spacer(minLength: 4)
             share
-            Spacer(minLength: 0)
+            Spacer(minLength: 4)
             GlassIconButton(symbol: "book") { openSheet(.library) }
-            Spacer(minLength: 0)
+            Spacer(minLength: 4)
             tabsButton
-            Spacer(minLength: 0)
+            Spacer(minLength: 4)
             menu
         }
     }
@@ -32,9 +32,9 @@ struct ToolbarRow: View {
                 Image(systemName: "square.and.arrow.up")
                     .font(.system(size: Metrics.symbolSize, weight: .semibold))
                     .frame(width: Metrics.controlSize, height: Metrics.controlSize)
+                    .glassEffect(.regular, in: .circle)
             }
-            .buttonStyle(.glass)
-            .buttonBorderShape(.circle)
+            .buttonStyle(PressStyle())
         } else {
             GlassIconButton(symbol: "square.and.arrow.up", isEnabled: false) {}
         }
@@ -51,9 +51,9 @@ struct ToolbarRow: View {
                     .contentTransition(.numericText())
             }
             .frame(width: Metrics.controlSize, height: Metrics.controlSize)
+            .glassEffect(.regular, in: .circle)
         }
-        .buttonStyle(.glass)
-        .buttonBorderShape(.circle)
+        .buttonStyle(PressStyle())
         .animation(.smooth, value: tabs.tabs.count)
     }
 
@@ -76,9 +76,9 @@ struct ToolbarRow: View {
             Image(systemName: "ellipsis")
                 .font(.system(size: Metrics.symbolSize, weight: .semibold))
                 .frame(width: Metrics.controlSize, height: Metrics.controlSize)
+                .glassEffect(.regular, in: .circle)
         }
         .menuStyle(.button)
-        .buttonStyle(.glass)
-        .buttonBorderShape(.circle)
+        .buttonStyle(PressStyle())
     }
 }

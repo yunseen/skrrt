@@ -6,14 +6,14 @@ struct StartPage: View {
     @State private var appeared = false
 
     private let favorites: [Favorite] = [
-        Favorite(title: "Google", url: "https://www.google.com"),
-        Favorite(title: "YouTube", url: "https://www.youtube.com"),
-        Favorite(title: "Wikipedia", url: "https://www.wikipedia.org"),
-        Favorite(title: "GitHub", url: "https://github.com"),
-        Favorite(title: "Reddit", url: "https://www.reddit.com"),
-        Favorite(title: "Maps", url: "https://maps.google.com"),
-        Favorite(title: "News", url: "https://news.google.com"),
-        Favorite(title: "Mail", url: "https://mail.google.com")
+        Favorite(letter: "G", title: "Google", url: "https://www.google.com"),
+        Favorite(letter: "Y", title: "YouTube", url: "https://www.youtube.com"),
+        Favorite(letter: "W", title: "Wikipedia", url: "https://www.wikipedia.org"),
+        Favorite(letter: "G", title: "GitHub", url: "https://github.com"),
+        Favorite(letter: "R", title: "Reddit", url: "https://www.reddit.com"),
+        Favorite(letter: "M", title: "Maps", url: "https://maps.google.com"),
+        Favorite(letter: "N", title: "News", url: "https://news.google.com"),
+        Favorite(letter: "M", title: "Mail", url: "https://mail.google.com")
     ]
 
     var body: some View {
@@ -46,6 +46,7 @@ struct StartPage: View {
                 Text("History and website data are not saved.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
             } else {
                 Image("LogoMark")
                     .resizable()
@@ -64,14 +65,12 @@ struct StartPage: View {
     }
 
     private var grid: some View {
-        GlassEffectContainer(spacing: 14) {
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 14), count: 4), spacing: 18) {
-                ForEach(Array(favorites.enumerated()), id: \.element.id) { index, favorite in
-                    tile(favorite)
-                        .opacity(appeared ? 1 : 0)
-                        .offset(y: appeared ? 0 : 16)
-                        .animation(.smooth(duration: 0.6).delay(0.15 + Double(index) * 0.04), value: appeared)
-                }
+        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16), count: 4), spacing: 20) {
+            ForEach(Array(favorites.enumerated()), id: \.offset) { index, favorite in
+                tile(favorite)
+                    .opacity(appeared ? 1 : 0)
+                    .offset(y: appeared ? 0 : 16)
+                    .animation(.smooth(duration: 0.6).delay(0.15 + Double(index) * 0.04), value: appeared)
             }
         }
     }
@@ -83,22 +82,22 @@ struct StartPage: View {
             }
         } label: {
             VStack(spacing: 8) {
-                Text(String(favorite.title.prefix(1)))
+                Text(verbatim: favorite.letter)
                     .font(.system(size: 22, weight: .bold, design: .rounded))
                     .frame(width: 60, height: 60)
-                    .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 20))
+                    .glassEffect(.regular, in: .rect(cornerRadius: 20))
                 Text(favorite.title)
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
             }
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressStyle())
     }
 
-    private struct Favorite: Identifiable {
-        let title: String
+    private struct Favorite {
+        let letter: String
+        let title: LocalizedStringKey
         let url: String
-        var id: String { url }
     }
 }

@@ -11,18 +11,15 @@ struct ShieldBadge: View {
                 Image(systemName: status.symbol)
                     .symbolRenderingMode(.hierarchical)
                     .foregroundStyle(status.tint)
-                    .contentTransition(.symbolEffect(.replace))
                 Text(status.title)
                     .font(.system(size: 13, weight: .semibold))
-                    .contentTransition(.opacity)
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 8)
+            .glassEffect(.regular, in: .capsule)
         }
-        .buttonStyle(.plain)
-        .glassEffect(.regular.interactive(), in: .capsule)
+        .buttonStyle(PressStyle())
         .animation(.smooth(duration: 0.3), value: status)
-        .sensoryFeedback(.selection, trigger: settings.blocksContent)
     }
 
     private var status: Status {
@@ -50,7 +47,7 @@ struct ShieldBadge: View {
             }
         }
 
-        var title: String {
+        var title: LocalizedStringKey {
             switch self {
             case .privateTab: "Private"
             case .protected: "Protected"

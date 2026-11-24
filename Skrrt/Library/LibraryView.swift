@@ -78,11 +78,11 @@ struct LibraryView: View {
             dismiss()
         } label: {
             VStack(alignment: .leading, spacing: 2) {
-                Text(title.isEmpty ? (url?.displayHost ?? "") : title)
+                Text(verbatim: title.isEmpty ? (url?.displayHost ?? "") : title)
                     .font(.body)
                     .foregroundStyle(.primary)
                     .lineLimit(1)
-                Text(url?.displayHost ?? "")
+                Text(verbatim: url?.displayHost ?? "")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
@@ -111,7 +111,7 @@ struct LibraryView: View {
 
         var id: String { rawValue }
 
-        var title: String {
+        var title: LocalizedStringKey {
             switch self {
             case .bookmarks: "Bookmarks"
             case .history: "History"

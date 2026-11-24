@@ -7,21 +7,21 @@ struct BottomBar: View {
     let addBookmark: () -> Void
 
     var body: some View {
-        GlassEffectContainer(spacing: 14) {
-            VStack(spacing: 10) {
-                AddressBar(tab: tab)
-                if !tab.isCompact {
-                    ToolbarRow(
-                        tab: tab,
-                        showSwitcher: showSwitcher,
-                        openSheet: openSheet,
-                        addBookmark: addBookmark
-                    )
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                }
+        VStack(spacing: 12) {
+            AddressBar(tab: tab)
+            if !tab.isCompact {
+                ToolbarRow(
+                    tab: tab,
+                    showSwitcher: showSwitcher,
+                    openSheet: openSheet,
+                    addBookmark: addBookmark
+                )
+                .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .padding(.horizontal, 16)
+        .containerRelativeFrame(.horizontal) { length, _ in
+            length - Metrics.edgeInset * 2
+        }
         .padding(.bottom, 6)
     }
 }

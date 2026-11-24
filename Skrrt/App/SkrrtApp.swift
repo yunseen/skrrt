@@ -23,6 +23,7 @@ struct SkrrtApp: App {
             RootView()
                 .environment(settings)
                 .environment(tabs)
+                .environment(\.locale, settings.language.locale)
                 .preferredColorScheme(settings.appearance.colorScheme)
                 .tint(Palette.blue)
         }

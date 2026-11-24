@@ -7,8 +7,9 @@ enum Palette {
 }
 
 enum Metrics {
-    static let controlSize: CGFloat = 44
+    static let controlSize: CGFloat = 48
     static let symbolSize: CGFloat = 17
-    static let barHeight: CGFloat = 128
+    static let barHeight: CGFloat = 132
     static let cardRadius: CGFloat = 28
+    static let edgeInset: CGFloat = 16
 }

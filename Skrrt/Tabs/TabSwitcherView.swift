@@ -58,17 +58,21 @@ struct TabSwitcherView: View {
     }
 
     private var footer: some View {
-        GlassEffectContainer(spacing: 14) {
-            HStack {
-                GlassIconButton(symbol: "plus") {
-                    tabs.open(isPrivate: showsPrivate)
-                    dismiss()
-                }
-                Spacer()
-                Button("Done", action: dismiss)
-                    .buttonStyle(.glassProminent)
-                    .controlSize(.large)
+        HStack {
+            GlassIconButton(symbol: "plus") {
+                tabs.open(isPrivate: showsPrivate)
+                dismiss()
             }
+            Spacer()
+            Button(action: dismiss) {
+                Text("Done")
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 26)
+                    .frame(height: Metrics.controlSize)
+                    .glassEffect(.regular.tint(Palette.blue), in: .capsule)
+            }
+            .buttonStyle(PressStyle())
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 6)

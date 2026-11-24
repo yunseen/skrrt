@@ -47,7 +47,7 @@ final class Tab: Identifiable {
 
     var displayTitle: String {
         if !title.isEmpty { return title }
-        return url?.displayHost ?? "New Tab"
+        return url?.displayHost ?? ""
     }
 
     func wake() {
@@ -106,16 +106,16 @@ final class Tab: Identifiable {
 
     private func observe() {
         observations = [
-            webView.observe(\.title) { [weak self] _, _ in MainActor.assumeIsolated { self?.syncState() } },
-            webView.observe(\.url) { [weak self] _, _ in MainActor.assumeIsolated { self?.syncState() } },
-            webView.observe(\.estimatedProgress) { [weak self] _, _ in MainActor.assumeIsolated { self?.syncState() } },
-            webView.observe(\.isLoading) { [weak self] _, _ in MainActor.assumeIsolated { self?.syncState() } },
-            webView.observe(\.canGoBack) { [weak self] _, _ in MainActor.assumeIsolated { self?.syncState() } },
-            webView.observe(\.canGoForward) { [weak self] _, _ in MainActor.assumeIsolated { self?.syncState() } },
-            webView.observe(\.hasOnlySecureContent) { [weak self] _, _ in MainActor.assumeIsolated { self?.syncState() } },
+            webView.observe(\.title) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
+            webView.observe(\.url) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
+            webView.observe(\.estimatedProgress) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
+            webView.observe(\.isLoading) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
+            webView.observe(\.canGoBack) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
+            webView.observe(\.canGoForward) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
+            webView.observe(\.hasOnlySecureContent) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
             webView.scrollView.observe(\.contentOffset, options: [.new]) { [weak self] _, change in
                 guard let offset = change.newValue?.y else { return }
-                MainActor.assumeIsolated { self?.scrolled(to: offset) }
+                Task { @MainActor in self?.scrolled(to: offset) }
             }
         ]
     }

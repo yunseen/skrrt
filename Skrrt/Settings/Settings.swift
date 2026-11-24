@@ -16,6 +16,16 @@ final class Settings {
         }
     }
 
+    var language: Language {
+        get {
+            access(keyPath: \.language)
+            return Language(rawValue: defaults.string(forKey: Key.language) ?? "") ?? .russian
+        }
+        set {
+            withMutation(keyPath: \.language) { defaults.set(newValue.rawValue, forKey: Key.language) }
+        }
+    }
+
     var userAgent: UserAgentMode {
         get {
             access(keyPath: \.userAgent)
@@ -47,6 +57,7 @@ final class Settings {
     }
 
     private enum Key {
+        static let language = "settings.language"
         static let appearance = "settings.appearance"
         static let userAgent = "settings.userAgent"
         static let blocksContent = "settings.blocksContent"

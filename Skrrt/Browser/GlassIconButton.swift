@@ -10,9 +10,10 @@ struct GlassIconButton: View {
             Image(systemName: symbol)
                 .font(.system(size: Metrics.symbolSize, weight: .semibold))
                 .frame(width: Metrics.controlSize, height: Metrics.controlSize)
+                .glassEffect(.regular, in: .circle)
         }
-        .buttonStyle(.glass)
-        .buttonBorderShape(.circle)
+        .buttonStyle(PressStyle())
         .disabled(!isEnabled)
+        .opacity(isEnabled ? 1 : 0.4)
     }
 }

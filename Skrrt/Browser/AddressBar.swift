@@ -13,18 +13,14 @@ struct AddressBar: View {
             Image(systemName: leadingSymbol)
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundStyle(tab.url != nil && tab.isSecure ? Palette.blue : Color.secondary)
-                .contentTransition(.symbolEffect(.replace))
             field
             trailing
         }
         .padding(.horizontal, 18)
         .frame(height: tab.isCompact ? 40 : 52)
-        .glassEffect(.regular.interactive(), in: .capsule)
+        .glassEffect(.regular, in: .capsule)
         .overlay(alignment: .bottomLeading) { progressBar }
         .animation(.smooth(duration: 0.3), value: isEditing)
-        .onChange(of: isFocused) { _, focused in
-            if !focused { isEditing = false }
-        }
     }
 
     @ViewBuilder
@@ -37,15 +33,25 @@ struct AddressBar: View {
                 .submitLabel(.go)
                 .focused($isFocused)
                 .onSubmit(submit)
-                .onAppear { isFocused = true }
+                .task {
+                    try? await Task.sleep(for: .milliseconds(60))
+                    isFocused = true
+                }
         } else {
             Button(action: begin) {
-                Text(label)
-                    .font(.system(size: tab.isCompact ? 14 : 16, weight: .medium))
-                    .foregroundStyle(tab.url == nil ? .secondary : .primary)
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity)
-                    .concealed()
+                Group {
+                    if let url = tab.url {
+                        Text(verbatim: url.displayHost)
+                    } else {
+                        Text("Search or enter address")
+                    }
+                }
+                .font(.system(size: tab.isCompact ? 14 : 16, weight: .medium))
+                .foregroundStyle(tab.url == nil ? .secondary : .primary)
+                .lineLimit(1)
+                .frame(maxWidth: .infinity)
+                .contentShape(Rectangle())
+                .concealed()
             }
             .buttonStyle(.plain)
         }
@@ -54,19 +60,16 @@ struct AddressBar: View {
     @ViewBuilder
     private var trailing: some View {
         if isEditing {
-            if !text.isEmpty {
-                Button { text = "" } label: {
-                    Image(systemName: "xmark.circle.fill").foregroundStyle(.secondary)
-                }
+            Button("Cancel", action: cancel)
+                .font(.system(size: 15, weight: .medium))
                 .buttonStyle(.plain)
-            }
+                .foregroundStyle(Palette.blue)
         } else if tab.url != nil && !tab.isCompact {
             Button {
                 if tab.isLoading { tab.stop() } else { tab.reload() }
             } label: {
                 Image(systemName: tab.isLoading ? "xmark" : "arrow.clockwise")
                     .font(.system(size: 15, weight: .semibold))
-                    .contentTransition(.symbolEffect(.replace))
             }
             .buttonStyle(.plain)
         }
@@ -91,10 +94,6 @@ struct AddressBar: View {
         return tab.isSecure ? "lock.fill" : "exclamationmark.triangle.fill"
     }
 
-    private var label: String {
-        tab.url?.displayHost ?? "Search or enter address"
-    }
-
     private func begin() {
         if tab.isCompact {
             tab.expand()
@@ -104,8 +103,13 @@ struct AddressBar: View {
         isEditing = true
     }
 
+    private func cancel() {
+        isFocused = false
+        isEditing = false
+    }
+
     private func submit() {
         tabs.submit(text, in: tab)
-        isFocused = false
+        cancel()
     }
 }

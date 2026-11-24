@@ -24,10 +24,10 @@ struct TabCard: View {
             Button(action: close) {
                 Image(systemName: "xmark")
                     .font(.system(size: 12, weight: .bold))
-                    .frame(width: 30, height: 30)
+                    .frame(width: 32, height: 32)
+                    .glassEffect(.regular, in: .circle)
             }
-            .buttonStyle(.glass)
-            .buttonBorderShape(.circle)
+            .buttonStyle(PressStyle())
             .padding(8)
         }
     }
@@ -58,10 +58,16 @@ struct TabCard: View {
                     .font(.system(size: 11))
                     .foregroundStyle(Palette.blue)
             }
-            Text(tab.displayTitle)
-                .font(.system(size: 13, weight: .semibold))
-                .lineLimit(1)
-                .concealed()
+            Group {
+                if tab.displayTitle.isEmpty {
+                    Text("New Tab")
+                } else {
+                    Text(verbatim: tab.displayTitle)
+                }
+            }
+            .font(.system(size: 13, weight: .semibold))
+            .lineLimit(1)
+            .concealed()
             Spacer(minLength: 0)
         }
         .padding(.horizontal, 14)

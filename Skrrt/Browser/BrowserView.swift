@@ -7,7 +7,7 @@ struct BrowserView: View {
 
     @Environment(TabStore.self) private var tabs
     @Environment(\.modelContext) private var context
-    @State private var toast: String?
+    @State private var toast: LocalizedStringKey?
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -65,7 +65,7 @@ struct BrowserView: View {
         flash("Bookmark Added")
     }
 
-    private func flash(_ message: String) {
+    private func flash(_ message: LocalizedStringKey) {
         withAnimation(.smooth) { toast = message }
         Task {
             try? await Task.sleep(for: .seconds(1.6))

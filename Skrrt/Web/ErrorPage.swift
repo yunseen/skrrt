@@ -19,7 +19,7 @@ enum ErrorPage {
         </head>
         <body>
         <div class="dot"></div>
-        <h1>Cannot Open Page</h1>
+        <h1>\(String(localized: "Cannot Open Page"))</h1>
         <p>\(reason)</p>
         <p>\(address)</p>
         </body>
