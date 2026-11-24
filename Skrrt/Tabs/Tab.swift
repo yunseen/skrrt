@@ -35,13 +35,10 @@ final class Tab: Identifiable {
         self.url = url
         self.pendingURL = url
         self.webView = WKWebView(frame: .zero, configuration: WebEngine.configuration(isPrivate: isPrivate))
-        webView.allowsBackForwardNavigationGestures = true
         webView.navigationDelegate = delegate
         webView.uiDelegate = delegate
-        webView.scrollView.refreshControl = refreshControl
         delegate.onFinish = { [weak self] in self?.finished() }
         delegate.onOpen = { [weak self] url in self?.onOpenTab?(url) }
-        refreshControl.addAction(UIAction { [weak self] _ in self?.reload() }, for: .valueChanged)
         observe()
     }
 
@@ -69,8 +66,6 @@ final class Tab: Identifiable {
             webView.reload()
         } else if let url {
             webView.load(URLRequest(url: url))
-        } else {
-            refreshControl.endRefreshing()
         }
     }
 
@@ -141,9 +136,6 @@ final class Tab: Identifiable {
             isSecure = false
         } else {
             isSecure = url == nil || webView.hasOnlySecureContent
-        }
-        if !isLoading {
-            refreshControl.endRefreshing()
         }
     }
 
