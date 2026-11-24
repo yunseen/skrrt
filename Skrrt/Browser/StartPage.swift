@@ -6,14 +6,14 @@ struct StartPage: View {
     @State private var appeared = false
 
     private let favorites: [Favorite] = [
-        Favorite(letter: "G", title: "Google", url: "https://www.google.com"),
-        Favorite(letter: "Y", title: "YouTube", url: "https://www.youtube.com"),
-        Favorite(letter: "W", title: "Wikipedia", url: "https://www.wikipedia.org"),
-        Favorite(letter: "G", title: "GitHub", url: "https://github.com"),
-        Favorite(letter: "R", title: "Reddit", url: "https://www.reddit.com"),
-        Favorite(letter: "M", title: "Maps", url: "https://maps.google.com"),
-        Favorite(letter: "N", title: "News", url: "https://news.google.com"),
-        Favorite(letter: "M", title: "Mail", url: "https://mail.google.com")
+        Favorite(title: "Google", url: "https://www.google.com", icon: .asset("FaviconGoogle")),
+        Favorite(title: "YouTube", url: "https://www.youtube.com", icon: .asset("FaviconYouTube")),
+        Favorite(title: "Wikipedia", url: "https://www.wikipedia.org", icon: .asset("FaviconWikipedia")),
+        Favorite(title: "GitHub", url: "https://github.com", icon: .asset("FaviconGitHub")),
+        Favorite(title: "Reddit", url: "https://www.reddit.com", icon: .asset("FaviconReddit")),
+        Favorite(title: "Maps", url: "https://maps.google.com", icon: .asset("FaviconMaps")),
+        Favorite(title: "News", url: "https://news.google.com", icon: .asset("FaviconNews")),
+        Favorite(title: "Mail", url: "https://mail.google.com", icon: .symbol("envelope.fill", Color(red: 0.92, green: 0.26, blue: 0.21)))
     ]
 
     var body: some View {
@@ -82,8 +82,7 @@ struct StartPage: View {
             }
         } label: {
             VStack(spacing: 8) {
-                Text(verbatim: favorite.letter)
-                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                icon(favorite.icon)
                     .frame(width: 60, height: 60)
                     .glassEffect(.regular, in: .rect(cornerRadius: 20))
                 Text(favorite.title)
@@ -95,9 +94,32 @@ struct StartPage: View {
         .buttonStyle(PressStyle())
     }
 
+    @ViewBuilder
+    private func icon(_ icon: Favorite.Icon) -> some View {
+        switch icon {
+        case .asset(let name):
+            Image(name)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 34, height: 34)
+                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        case .symbol(let name, let color):
+            Image(systemName: name)
+                .font(.system(size: 18, weight: .bold))
+                .foregroundStyle(.white)
+                .frame(width: 34, height: 34)
+                .background(color, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
+        }
+    }
+
     private struct Favorite {
-        let letter: String
+        enum Icon {
+            case asset(String)
+            case symbol(String, Color)
+        }
+
         let title: LocalizedStringKey
         let url: String
+        let icon: Icon
     }
 }
