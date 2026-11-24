@@ -63,14 +63,14 @@ struct MascotScene: UIViewRepresentable {
             let ambient = SCNNode()
             ambient.light = SCNLight()
             ambient.light?.type = .ambient
-            ambient.light?.intensity = 450
+            ambient.light?.intensity = 260
             ambient.light?.color = UIColor(red: 0.92, green: 0.92, blue: 1, alpha: 1)
             scene.rootNode.addChildNode(ambient)
 
             let key = SCNNode()
             key.light = SCNLight()
             key.light?.type = .directional
-            key.light?.intensity = 1100
+            key.light?.intensity = 700
             key.light?.color = UIColor.white
             key.eulerAngles = SCNVector3(-0.8, 0.55, 0)
             scene.rootNode.addChildNode(key)
@@ -78,13 +78,13 @@ struct MascotScene: UIViewRepresentable {
             let fill = SCNNode()
             fill.light = SCNLight()
             fill.light?.type = .omni
-            fill.light?.intensity = 350
+            fill.light?.intensity = 250
             fill.light?.color = UIColor(red: 0.55, green: 0.68, blue: 1, alpha: 1)
             fill.position = SCNVector3(-3, 1.5, 5)
             scene.rootNode.addChildNode(fill)
 
             scene.lightingEnvironment.contents = UIColor(white: 1, alpha: 1)
-            scene.lightingEnvironment.intensity = 0.7
+            scene.lightingEnvironment.intensity = 0.45
 
             let shadowImage = Self.shadowImage()
             let layout: [(x: Float, y: Float, z: Float, scale: Float, height: CGFloat, delay: TimeInterval, spins: Bool)] = [
