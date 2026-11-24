@@ -20,12 +20,7 @@ struct SkrrtApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView()
-                .environment(settings)
-                .environment(tabs)
-                .environment(\.locale, settings.language.locale)
-                .preferredColorScheme(settings.appearance.colorScheme)
-                .tint(Palette.blue)
+            BareWeb().ignoresSafeArea()
         }
         .modelContainer(container)
     }
