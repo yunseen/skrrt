@@ -156,8 +156,8 @@ struct MascotScene: UIViewRepresentable {
                 glintNode.position = SCNVector3(0.02 * side, 0.05, 0.06)
                 eye.addChildNode(glintNode)
                 root.addChildNode(eye)
-                let closed = SCNAction.scaleX(to: 0.85, y: 0.12, z: 0.6, duration: 0.07)
-                let open = SCNAction.scaleX(to: 0.85, y: 1.2, z: 0.6, duration: 0.09)
+                let closed = squash(from: SCNVector3(0.85, 1.2, 0.6), to: SCNVector3(0.85, 0.12, 0.6), duration: 0.07)
+                let open = squash(from: SCNVector3(0.85, 0.12, 0.6), to: SCNVector3(0.85, 1.2, 0.6), duration: 0.09)
                 let wait = SCNAction.wait(duration: 2.8, withRange: 1.6)
                 eye.runAction(.repeatForever(.sequence([wait, closed, open])))
 
@@ -172,37 +172,47 @@ struct MascotScene: UIViewRepresentable {
 
         private static func jumpLoop(height: CGFloat, delay: TimeInterval, spins: Bool) -> SCNAction {
             let crouch = SCNAction.group([
-                .scaleX(to: 1.12, y: 0.80, z: 1.12, duration: 0.22),
+                squash(from: SCNVector3(1, 1, 1), to: SCNVector3(1.12, 0.80, 1.12), duration: 0.22),
                 .moveBy(x: 0, y: -0.09, z: 0, duration: 0.22)
             ])
-            crouch.timingMode = .easeOut
 
             let launch = SCNAction.group([
                 .moveBy(x: 0, y: height + 0.09, z: 0, duration: 0.42),
-                .scaleX(to: 0.93, y: 1.10, z: 0.93, duration: 0.2)
+                squash(from: SCNVector3(1.12, 0.80, 1.12), to: SCNVector3(0.93, 1.10, 0.93), duration: 0.2)
             ])
-            launch.timingMode = .easeOut
 
             let fall = SCNAction.group([
                 .moveBy(x: 0, y: -height, z: 0, duration: 0.38),
-                .scaleX(to: 1, y: 1, z: 1, duration: 0.38)
+                squash(from: SCNVector3(0.93, 1.10, 0.93), to: SCNVector3(1, 1, 1), duration: 0.38)
             ])
-            fall.timingMode = .easeIn
 
             var air: SCNAction = .sequence([launch, fall])
             if spins {
                 air = .group([air, .rotateBy(x: 0, y: CGFloat.pi * 2, z: 0, duration: 0.8)])
             }
 
-            let land = SCNAction.scaleX(to: 1.16, y: 0.76, z: 1.16, duration: 0.09)
-            let recover = SCNAction.scaleX(to: 1, y: 1, z: 1, duration: 0.3)
-            recover.timingMode = .easeOut
+            let land = squash(from: SCNVector3(1, 1, 1), to: SCNVector3(1.16, 0.76, 1.16), duration: 0.09)
+            let recover = squash(from: SCNVector3(1.16, 0.76, 1.16), to: SCNVector3(1, 1, 1), duration: 0.3)
             let rest = SCNAction.wait(duration: 0.55, withRange: 0.5)
 
             return .sequence([
                 .wait(duration: delay),
                 .repeatForever(.sequence([crouch, air, land, recover, rest]))
             ])
+        }
+
+        /// Smoothly changes a node's scale along each axis (SceneKit has no per-axis scale action).
+        private static func squash(from: SCNVector3, to: SCNVector3, duration: TimeInterval) -> SCNAction {
+            SCNAction.customAction(duration: duration) { node, elapsed in
+                let raw = duration > 0 ? Float(elapsed) / Float(duration) : 1
+                let progress = min(max(raw, 0), 1)
+                let eased = 1 - (1 - progress) * (1 - progress)
+                node.scale = SCNVector3(
+                    from.x + (to.x - from.x) * eased,
+                    from.y + (to.y - from.y) * eased,
+                    from.z + (to.z - from.z) * eased
+                )
+            }
         }
 
         private static func shadowImage() -> UIImage {
