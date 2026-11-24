@@ -35,14 +35,11 @@ final class Tab: Identifiable {
         self.url = url
         self.pendingURL = url
         self.webView = WKWebView(frame: .zero, configuration: WebEngine.configuration(isPrivate: isPrivate))
-        webView.allowsBackForwardNavigationGestures = true
-        webView.navigationDelegate = delegate
-        webView.uiDelegate = delegate
-        webView.scrollView.refreshControl = refreshControl
+        webView.allowsBackForwardNavigationGestures = false
         delegate.onFinish = { [weak self] in self?.finished() }
         delegate.onOpen = { [weak self] url in self?.onOpenTab?(url) }
         refreshControl.addAction(UIAction { [weak self] _ in self?.reload() }, for: .valueChanged)
-        observe()
+        // observe()
     }
 
     var displayTitle: String {
