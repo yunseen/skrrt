@@ -38,7 +38,6 @@ final class Tab: Identifiable {
         webView.allowsBackForwardNavigationGestures = true
         webView.navigationDelegate = delegate
         webView.uiDelegate = delegate
-        webView.scrollView.refreshControl = refreshControl
         delegate.onFinish = { [weak self] in self?.finished() }
         delegate.onOpen = { [weak self] url in self?.onOpenTab?(url) }
         refreshControl.addAction(UIAction { [weak self] _ in self?.reload() }, for: .valueChanged)
