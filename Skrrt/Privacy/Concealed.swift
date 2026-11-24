@@ -18,10 +18,6 @@ private struct Concealed: ViewModifier {
                 }
             }
             .animation(.smooth(duration: 0.4), value: isHidden)
-            .simultaneousGesture(
-                LongPressGesture(minimumDuration: 0.4).onEnded { _ in reveal() },
-                including: isHidden ? .gesture : .none
-            )
     }
 
     private func reveal() {
