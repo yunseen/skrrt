@@ -1,0 +1,6 @@
+*.xcodeproj
+Skrrt/Info.plist
+build/
+DerivedData/
+.DS_Store
+*.ipa

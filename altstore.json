@@ -1,0 +1,23 @@
+{
+  "name": "Skrrt",
+  "identifier": "dev.skrrt.source",
+  "subtitle": "A fast browser for iPhone",
+  "description": "Skrrt is an open source WebKit browser with Liquid Glass.",
+  "iconURL": "https://raw.githubusercontent.com/yunseen/skrrt/main/Branding/icon.png",
+  "website": "https://github.com/yunseen/skrrt",
+  "tintColor": "0A84FF",
+  "apps": [
+    {
+      "name": "Skrrt",
+      "bundleIdentifier": "dev.skrrt.browser",
+      "developerName": "yunseen",
+      "subtitle": "Fast. Private. Liquid.",
+      "localizedDescription": "A fast WebKit browser for iPhone with Liquid Glass, tracker blocking and privacy first design.",
+      "iconURL": "https://raw.githubusercontent.com/yunseen/skrrt/main/Branding/icon.png",
+      "tintColor": "0A84FF",
+      "category": "utilities",
+      "versions": []
+    }
+  ],
+  "news": []
+}
