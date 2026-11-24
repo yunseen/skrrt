@@ -19,7 +19,6 @@ final class Settings {
     var wallpaper: WallpaperStyle { didSet { store(wallpaper.rawValue, Key.wallpaper) } }
     var wallpaperBlur: Double { didSet { store(wallpaperBlur, Key.wallpaperBlur) } }
     var animatesWallpaper: Bool { didSet { store(animatesWallpaper, Key.animatesWallpaper) } }
-    var showsMascots: Bool { didSet { store(showsMascots, Key.showsMascots) } }
     var tileShape: TileShape { didSet { store(tileShape.rawValue, Key.tileShape) } }
     var showsTileTitles: Bool { didSet { store(showsTileTitles, Key.showsTileTitles) } }
     var tileColumns: Int { didSet { store(tileColumns, Key.tileColumns) } }
@@ -50,7 +49,6 @@ final class Settings {
         wallpaper = WallpaperStyle(rawValue: defaults.string(forKey: Key.wallpaper) ?? "") ?? .curtain
         wallpaperBlur = defaults.object(forKey: Key.wallpaperBlur) as? Double ?? 6
         animatesWallpaper = defaults.object(forKey: Key.animatesWallpaper) as? Bool ?? true
-        showsMascots = defaults.object(forKey: Key.showsMascots) as? Bool ?? true
         tileShape = TileShape(rawValue: defaults.string(forKey: Key.tileShape) ?? "") ?? .squircle
         showsTileTitles = defaults.object(forKey: Key.showsTileTitles) as? Bool ?? true
         tileColumns = defaults.object(forKey: Key.tileColumns) as? Int ?? 4
@@ -113,7 +111,6 @@ final class Settings {
         static let wallpaper = "settings.wallpaper"
         static let wallpaperBlur = "settings.wallpaperBlur"
         static let animatesWallpaper = "settings.animatesWallpaper"
-        static let showsMascots = "settings.showsMascots"
         static let tileShape = "settings.tileShape"
         static let showsTileTitles = "settings.showsTileTitles"
         static let tileColumns = "settings.tileColumns"
