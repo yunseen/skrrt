@@ -14,7 +14,6 @@ struct BrowserView: View {
         ZStack(alignment: .top) {
             if let tab = tabs.current {
                 page(for: tab)
-                    .ignoresSafeArea()
                 top(for: tab)
             }
         }
@@ -36,9 +35,11 @@ struct BrowserView: View {
     private func page(for tab: Tab) -> some View {
         if tab.url == nil {
             StartPage(tab: tab)
+                .ignoresSafeArea()
                 .id(tab.id)
         } else {
-            WebContainer(webView: tab.webView, bottomInset: Metrics.barHeight)
+            WebContainer(webView: tab.webView, bottomInset: 0)
+                .ignoresSafeArea(edges: .top)
                 .id(tab.id)
         }
     }
