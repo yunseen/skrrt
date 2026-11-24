@@ -84,7 +84,7 @@ struct StartPage: View {
             VStack(spacing: 8) {
                 icon(favorite.icon)
                     .frame(width: 60, height: 60)
-                    .glassEffect(.regular, in: .rect(cornerRadius: 20))
+                    .background(.ultraThinMaterial)
                 Text(favorite.title)
                     .font(.caption)
                     .foregroundStyle(.secondary)

@@ -16,7 +16,7 @@ struct ShieldBadge: View {
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 8)
-            .glassEffect(.regular, in: .capsule)
+            .background(.ultraThinMaterial)
         }
         .buttonStyle(PressStyle())
         .animation(.smooth(duration: 0.3), value: status)

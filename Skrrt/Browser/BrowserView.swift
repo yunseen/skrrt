@@ -52,7 +52,7 @@ struct BrowserView: View {
                     .font(.system(size: 13, weight: .semibold))
                     .padding(.horizontal, 14)
                     .padding(.vertical, 8)
-                    .glassEffect(.regular, in: .capsule)
+                    .background(.ultraThinMaterial)
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
         }

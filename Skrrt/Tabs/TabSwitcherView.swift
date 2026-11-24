@@ -71,7 +71,7 @@ struct TabSwitcherView: View {
                     .foregroundStyle(.white)
                     .padding(.horizontal, 26)
                     .frame(height: Metrics.controlSize)
-                    .glassEffect(.regular.tint(Palette.blue), in: .capsule)
+                    .background(.ultraThinMaterial)
             }
             .buttonStyle(PressStyle())
         }

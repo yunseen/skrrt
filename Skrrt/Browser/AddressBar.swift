@@ -18,7 +18,7 @@ struct AddressBar: View {
         }
         .padding(.horizontal, 18)
         .frame(height: tab.isCompact ? 40 : 52)
-        .glassEffect(.regular, in: .capsule)
+        .background(.ultraThinMaterial)
         .overlay(alignment: .bottomLeading) { progressBar }
         .animation(.smooth(duration: 0.3), value: isEditing)
     }

@@ -25,7 +25,7 @@ struct TabCard: View {
                 Image(systemName: "xmark")
                     .font(.system(size: 12, weight: .bold))
                     .frame(width: 32, height: 32)
-                    .glassEffect(.regular, in: .circle)
+                    .background(.ultraThinMaterial)
             }
             .buttonStyle(PressStyle())
             .padding(8)
@@ -73,6 +73,6 @@ struct TabCard: View {
         .padding(.horizontal, 14)
         .padding(.vertical, 10)
         .frame(maxWidth: .infinity)
-        .glassEffect(.regular, in: .rect(cornerRadius: 0))
+        .background(.ultraThinMaterial)
     }
 }

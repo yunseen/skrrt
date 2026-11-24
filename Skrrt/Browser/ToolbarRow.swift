@@ -32,7 +32,7 @@ struct ToolbarRow: View {
                 Image(systemName: "square.and.arrow.up")
                     .font(.system(size: Metrics.symbolSize, weight: .semibold))
                     .frame(width: Metrics.controlSize, height: Metrics.controlSize)
-                    .glassEffect(.regular, in: .circle)
+                    .background(.ultraThinMaterial)
             }
             .buttonStyle(PressStyle())
         } else {
@@ -51,7 +51,7 @@ struct ToolbarRow: View {
                     .contentTransition(.numericText())
             }
             .frame(width: Metrics.controlSize, height: Metrics.controlSize)
-            .glassEffect(.regular, in: .circle)
+            .background(.ultraThinMaterial)
         }
         .buttonStyle(PressStyle())
         .animation(.smooth, value: tabs.tabs.count)
@@ -76,7 +76,7 @@ struct ToolbarRow: View {
             Image(systemName: "ellipsis")
                 .font(.system(size: Metrics.symbolSize, weight: .semibold))
                 .frame(width: Metrics.controlSize, height: Metrics.controlSize)
-                .glassEffect(.regular, in: .circle)
+                .background(.ultraThinMaterial)
         }
         .menuStyle(.button)
         .buttonStyle(PressStyle())
