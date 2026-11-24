@@ -28,6 +28,9 @@ final class TabStore {
     func start() {
         guard !isStarted else { return }
         isStarted = true
+        if ProcessInfo.processInfo.arguments.contains("-skrrt-reset") {
+            UserDefaults.standard.removeObject(forKey: sessionKey)
+        }
         restore()
     }
 
