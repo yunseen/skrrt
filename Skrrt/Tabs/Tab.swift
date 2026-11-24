@@ -42,7 +42,7 @@ final class Tab: Identifiable {
         delegate.onFinish = { [weak self] in self?.finished() }
         delegate.onOpen = { [weak self] url in self?.onOpenTab?(url) }
         refreshControl.addAction(UIAction { [weak self] _ in self?.reload() }, for: .valueChanged)
-        observe()
+        // observe()
     }
 
     var displayTitle: String {
