@@ -9,11 +9,5 @@ struct WebContainer: UIViewRepresentable {
         webView
     }
 
-    func updateUIView(_ view: WKWebView, context: Context) {
-        let scrollView = view.scrollView
-        if scrollView.contentInset.bottom != bottomInset {
-            scrollView.contentInset.bottom = bottomInset
-            scrollView.verticalScrollIndicatorInsets.bottom = bottomInset
-        }
-    }
+    func updateUIView(_ view: WKWebView, context: Context) {}
 }

@@ -13,7 +13,6 @@ struct BrowserView: View {
         ZStack(alignment: .top) {
             if let tab = tabs.current {
                 page(for: tab)
-                    .ignoresSafeArea()
                 top(for: tab)
             }
         }
