@@ -10,22 +10,22 @@ struct StartPage: View {
 
     var body: some View {
         GeometryReader { proxy in
-            ZStack {
-                WallpaperView()
-                VStack(spacing: 0) {
-                    Color.clear.frame(height: proxy.size.height * 0.30)
-                    if tab.isPrivate {
-                        privateHeader
-                    } else {
-                        ScrollView(showsIndicators: false) {
-                            grid
-                                .padding(.horizontal, 24)
-                                .padding(.vertical, 6)
-                        }
+            VStack(spacing: 0) {
+                Color.clear.frame(height: proxy.size.height * 0.26)
+                if tab.isPrivate {
+                    privateHeader
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        grid
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 6)
                     }
-                    Spacer(minLength: Metrics.barHeight + 8)
                 }
+                Spacer(minLength: 8)
             }
+        }
+        .background {
+            WallpaperView().allowsHitTesting(false)
         }
         .sheet(item: $draft) { draft in
             ShortcutEditor(draft: draft)

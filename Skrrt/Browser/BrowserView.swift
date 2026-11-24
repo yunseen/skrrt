@@ -35,7 +35,6 @@ struct BrowserView: View {
     private func page(for tab: Tab) -> some View {
         if tab.url == nil {
             StartPage(tab: tab)
-                .ignoresSafeArea()
                 .id(tab.id)
         } else {
             WebContainer(webView: tab.webView, bottomInset: 0)
