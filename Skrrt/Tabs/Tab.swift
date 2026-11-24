@@ -35,7 +35,7 @@ final class Tab: Identifiable {
         self.url = url
         self.pendingURL = url
         self.webView = WKWebView(frame: .zero, configuration: WebEngine.configuration(isPrivate: isPrivate))
-        webView.allowsBackForwardNavigationGestures = true
+        webView.allowsBackForwardNavigationGestures = false
         webView.navigationDelegate = delegate
         webView.uiDelegate = delegate
         webView.scrollView.refreshControl = refreshControl
