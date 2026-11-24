@@ -17,7 +17,7 @@ struct PrivacySection: View {
         } header: {
             Text("Privacy")
         } footer: {
-            Text("Hidden addresses appear as dots in tab and library lists. Tap one to reveal it for five seconds.")
+            Text("Hidden addresses appear as dots in tab and library lists. Touch and hold one to reveal it for five seconds.")
         }
         .confirmationDialog("Clear all history and website data?", isPresented: $confirmsClearing, titleVisibility: .visible) {
             Button("Clear Everything", role: .destructive) {

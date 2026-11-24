@@ -21,7 +21,7 @@
 - Tabs with a visual switcher and private tabs
 - Ad and tracker blocking powered by WebKit content rules
 - Protection badge under the Dynamic Island, tap it to switch the shield
-- Hidden addresses that turn into a living dot field until you tap them
+- Hidden addresses that turn into a living dot field until you touch and hold them
 - Bookmarks and history with search
 - Site mode switch: Safari, Chrome or Desktop
 - Google search from the address bar

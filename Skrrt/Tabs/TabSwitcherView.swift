@@ -14,6 +14,7 @@ struct TabSwitcherView: View {
 
     var body: some View {
         ZStack {
+            Palette.background.ignoresSafeArea()
             AuroraBackground().ignoresSafeArea()
             ScrollView {
                 if visible.isEmpty {

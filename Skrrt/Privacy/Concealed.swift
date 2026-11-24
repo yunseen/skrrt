@@ -19,10 +19,8 @@ private struct Concealed: ViewModifier {
             }
             .animation(.smooth(duration: 0.4), value: isHidden)
             .simultaneousGesture(
-                TapGesture().onEnded {
-                    guard isHidden else { return }
-                    reveal()
-                }
+                LongPressGesture(minimumDuration: 0.4).onEnded { _ in reveal() },
+                including: isHidden ? .gesture : .none
             )
     }
 
