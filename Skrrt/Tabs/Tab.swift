@@ -115,8 +115,17 @@ final class Tab: Identifiable {
         let configuration = WKSnapshotConfiguration()
         configuration.snapshotWidth = 420
         let image: UIImage? = await withCheckedContinuation { continuation in
-            webView.takeSnapshot(with: configuration) { image, _ in
-                continuation.resume(returning: image)
+            var finished = false
+            let finish: (UIImage?) -> Void = { result in
+                guard !finished else { return }
+                finished = true
+                continuation.resume(returning: result)
+            }
+            webView.takeSnapshot(with: configuration) { result, _ in
+                finish(result)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                finish(nil)
             }
         }
         if let image {
