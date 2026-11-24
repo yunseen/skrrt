@@ -19,9 +19,9 @@
       "versions": [
         {
           "version": "1.0.0",
-          "date": "2026-11-24T13:03:25Z",
+          "date": "2026-11-24T19:04:14Z",
           "downloadURL": "https://github.com/yunseen/skrrt/releases/download/v1.0.0/Skrrt.ipa",
-          "size": 242136,
+          "size": 305866,
           "minOSVersion": "26.0",
           "localizedDescription": "Skrrt 1.0.0"
         }
