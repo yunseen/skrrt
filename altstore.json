@@ -16,7 +16,16 @@
       "iconURL": "https://raw.githubusercontent.com/yunseen/skrrt/main/Branding/icon.png",
       "tintColor": "0A84FF",
       "category": "utilities",
-      "versions": []
+      "versions": [
+        {
+          "version": "1.0.0",
+          "date": "2026-11-24T13:03:25Z",
+          "downloadURL": "https://github.com/yunseen/skrrt/releases/download/v1.0.0/Skrrt.ipa",
+          "size": 242136,
+          "minOSVersion": "26.0",
+          "localizedDescription": "Skrrt 1.0.0"
+        }
+      ]
     }
   ],
   "news": []
