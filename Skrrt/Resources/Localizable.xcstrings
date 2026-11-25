@@ -2860,6 +2860,26 @@
           }
         }
       }
+    },
+    "Plugin Documentation": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Документация плагинов"
+          }
+        }
+      }
+    },
+    "Turn on Web Inspector to debug pages and plugins from Safari on a Mac.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Включите веб-инспектор, чтобы отлаживать страницы и плагины из Safari на Mac."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
