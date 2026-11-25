@@ -2120,6 +2120,746 @@
           }
         }
       }
+    },
+    "Store": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Магазин"
+          }
+        }
+      }
+    },
+    "Installed %lld": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Установлено %lld"
+          }
+        }
+      }
+    },
+    "Installed": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Установлено"
+          }
+        }
+      }
+    },
+    "Search plugins": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поиск плагинов"
+          }
+        }
+      }
+    },
+    "Add your own": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавить свой"
+          }
+        }
+      }
+    },
+    "Featured": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подборка"
+          }
+        }
+      }
+    },
+    "All Plugins": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все плагины"
+          }
+        }
+      }
+    },
+    "You are offline. The plugins that came with the app are shown.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет сети. Показаны плагины, которые идут вместе с приложением."
+          }
+        }
+      }
+    },
+    "No Plugins Installed": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Плагинов нет"
+          }
+        }
+      }
+    },
+    "Get plugins from the store. They work in every tab.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Возьмите плагины в магазине. Они работают в каждой вкладке."
+          }
+        }
+      }
+    },
+    "Open the Store": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть магазин"
+          }
+        }
+      }
+    },
+    "Updates": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обновления"
+          }
+        }
+      }
+    },
+    "Remove": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить"
+          }
+        }
+      }
+    },
+    "Off on %lld sites": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выключен на сайтах: %lld"
+          }
+        }
+      }
+    },
+    "Update": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обновить"
+          }
+        }
+      }
+    },
+    "Get": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Получить"
+          }
+        }
+      }
+    },
+    "Reset to Defaults": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сбросить настройки"
+          }
+        }
+      }
+    },
+    "Settings: %lld. You can change them after installing.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настроек: %lld. Изменить их можно после установки."
+          }
+        }
+      }
+    },
+    "Permissions": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разрешения"
+          }
+        }
+      }
+    },
+    "A plugin never sees your tabs, history, passwords or the data of the app.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Плагин никогда не видит ваши вкладки, историю, пароли и данные приложения."
+          }
+        }
+      }
+    },
+    "Turned Off on These Sites": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выключен на этих сайтах"
+          }
+        }
+      }
+    },
+    "Turn On": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Включить"
+          }
+        }
+      }
+    },
+    "Information": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Информация"
+          }
+        }
+      }
+    },
+    "Author": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Автор"
+          }
+        }
+      }
+    },
+    "Category": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Категория"
+          }
+        }
+      }
+    },
+    "Remove Plugin": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить плагин"
+          }
+        }
+      }
+    },
+    "Remove this plugin?": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить этот плагин?"
+          }
+        }
+      }
+    },
+    "Its settings are removed too. You can get it again from the store.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Его настройки тоже удалятся. Плагин можно снова взять в магазине."
+          }
+        }
+      }
+    },
+    "Runs code you added yourself. Only use code you trust.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выполняет код, который вы добавили сами. Используйте только код, которому доверяете."
+          }
+        }
+      }
+    },
+    "Works on every website you open.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Работает на всех сайтах, которые вы открываете."
+          }
+        }
+      }
+    },
+    "Works on: %@": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Работает на: %@"
+          }
+        }
+      }
+    },
+    "Works only inside the page and does not contact other servers.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Работает только внутри страницы и не обращается к другим серверам."
+          }
+        }
+      }
+    },
+    "Contacts: %@": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обращается к: %@"
+          }
+        }
+      }
+    },
+    "Uses: %@": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Использует: %@"
+          }
+        }
+      }
+    },
+    "Logo": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Логотип"
+          }
+        }
+      }
+    },
+    "Access Page Variables": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Доступ к переменным страницы"
+          }
+        }
+      }
+    },
+    "One address per line. Leave empty to run on every site. Wildcards like *.example.com work. Page variables are off by default for safety.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Один адрес в строке. Оставьте пустым, чтобы работало на всех сайтах. Маски вроде *.example.com работают. Доступ к переменным страницы по умолчанию выключен ради безопасности."
+          }
+        }
+      }
+    },
+    "This Site": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот сайт"
+          }
+        }
+      }
+    },
+    "No plugins for this site": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Для этого сайта плагинов нет"
+          }
+        }
+      }
+    },
+    "Get plugins from the store and they will appear here.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Возьмите плагины в магазине, и они появятся здесь."
+          }
+        }
+      }
+    },
+    "Plugins on This Site": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Плагины на этом сайте"
+          }
+        }
+      }
+    },
+    "Hide an Element": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрыть элемент"
+          }
+        }
+      }
+    },
+    "Hidden Elements": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрытые элементы"
+          }
+        }
+      }
+    },
+    "Cookies": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cookie"
+          }
+        }
+      }
+    },
+    "Clear Site Data": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Очистить данные сайта"
+          }
+        }
+      }
+    },
+    "Get More Plugins": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Больше плагинов"
+          }
+        }
+      }
+    },
+    "Clear the data of this site?": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Очистить данные этого сайта?"
+          }
+        }
+      }
+    },
+    "Cookies, stored data and cache of this site are removed. You will be signed out.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cookie, данные и кэш этого сайта удалятся. Вы выйдете из аккаунта на сайте."
+          }
+        }
+      }
+    },
+    "%lld plugins active": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Активных плагинов: %lld"
+          }
+        }
+      }
+    },
+    "Turned off everywhere": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выключен везде"
+          }
+        }
+      }
+    },
+    "Nothing Hidden": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ничего не скрыто"
+          }
+        }
+      }
+    },
+    "Use Hide an Element in the site window, then tap what you do not want to see.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выберите «Скрыть элемент» в окне сайта и нажмите на то, что не хотите видеть."
+          }
+        }
+      }
+    },
+    "Swipe an item to show it again. Reload the page to see the change.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Смахните элемент, чтобы показать его снова. Перезагрузите страницу, чтобы увидеть изменения."
+          }
+        }
+      }
+    },
+    "Show All": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показать все"
+          }
+        }
+      }
+    },
+    "No Cookies": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cookie нет"
+          }
+        }
+      }
+    },
+    "This site has not stored any cookies.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот сайт не сохранил ни одного cookie."
+          }
+        }
+      }
+    },
+    "%lld cookies": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cookie: %lld"
+          }
+        }
+      }
+    },
+    "Tap a cookie to see it. Swipe to delete. Deleting a cookie of a sign-in signs you out of the site.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите на cookie, чтобы посмотреть. Смахните, чтобы удалить. Удаление cookie входа выведет вас из аккаунта на сайте."
+          }
+        }
+      }
+    },
+    "Refresh": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обновить"
+          }
+        }
+      }
+    },
+    "Delete All": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить все"
+          }
+        }
+      }
+    },
+    "Delete all cookies of this site?": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить все cookie этого сайта?"
+          }
+        }
+      }
+    },
+    "Value": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Значение"
+          }
+        }
+      }
+    },
+    "Domain": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Домен"
+          }
+        }
+      }
+    },
+    "Path": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Путь"
+          }
+        }
+      }
+    },
+    "Expires": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Срок действия"
+          }
+        }
+      }
+    },
+    "End of session": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "До конца сессии"
+          }
+        }
+      }
+    },
+    "Secure": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Защищённое"
+          }
+        }
+      }
+    },
+    "Yes": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Да"
+          }
+        }
+      }
+    },
+    "No": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет"
+          }
+        }
+      }
+    },
+    "Hidden from scripts": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрыто от скриптов"
+          }
+        }
+      }
+    },
+    "Copy Value": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Копировать значение"
+          }
+        }
+      }
+    },
+    "Delete Cookie": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить cookie"
+          }
+        }
+      }
+    },
+    "The plugin could not be downloaded. Check your connection and try again.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось скачать плагин. Проверьте соединение и повторите."
+          }
+        }
+      }
+    },
+    "The plugin file is damaged.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Файл плагина повреждён."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
