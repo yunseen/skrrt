@@ -1,13 +1,13 @@
 import SwiftUI
 
 enum SearchEngineKind: String, CaseIterable, Identifiable {
-    case google
     case duckduckgo
     case brave
-    case bing
-    case yandex
     case startpage
     case ecosia
+    case yandex
+    case bing
+    case google
     case custom
 
     var id: String { rawValue }

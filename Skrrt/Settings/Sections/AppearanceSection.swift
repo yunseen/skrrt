@@ -22,7 +22,7 @@ struct AppearanceSection: View {
         } header: {
             Text("Appearance")
         } footer: {
-            Text("Dark Pages asks websites for their dark version, including search results.")
+            Text("Off keeps websites in their normal colors. Match App and Always ask them for a dark version.")
         }
     }
 

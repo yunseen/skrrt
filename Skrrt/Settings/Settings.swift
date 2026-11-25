@@ -38,13 +38,13 @@ final class Settings {
         language = Language(rawValue: defaults.string(forKey: Key.language) ?? "") ?? .russian
         userAgent = UserAgentMode(rawValue: defaults.string(forKey: Key.userAgent) ?? "") ?? .safari
 
-        searchEngine = SearchEngineKind(rawValue: defaults.string(forKey: Key.searchEngine) ?? "") ?? .google
+        searchEngine = SearchEngineKind(rawValue: defaults.string(forKey: Key.searchEngine) ?? "") ?? .duckduckgo
         customSearchURL = defaults.string(forKey: Key.customSearchURL) ?? "https://duckduckgo.com/?q=%s"
         showsSuggestions = defaults.object(forKey: Key.showsSuggestions) as? Bool ?? true
 
         accent = AccentChoice(rawValue: defaults.string(forKey: Key.accent) ?? "") ?? .blue
         customAccentHex = defaults.string(forKey: Key.customAccentHex) ?? "0A84FF"
-        darkPages = DarkPages(rawValue: defaults.string(forKey: Key.darkPages) ?? "") ?? .auto
+        darkPages = DarkPages(rawValue: defaults.string(forKey: Key.darkPages) ?? "") ?? .off
 
         wallpaper = WallpaperStyle(rawValue: defaults.string(forKey: Key.wallpaper) ?? "") ?? .curtain
         wallpaperBlur = defaults.object(forKey: Key.wallpaperBlur) as? Double ?? 6

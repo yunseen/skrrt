@@ -1220,6 +1220,16 @@
           }
         }
       }
+    },
+    "Off keeps websites in their normal colors. Match App and Always ask them for a dark version.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Выкл.» оставляет сайты в обычных цветах. «Как приложение» и «Всегда» просят у сайтов тёмную версию."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
