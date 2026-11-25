@@ -18,6 +18,14 @@
       "category": "utilities",
       "versions": [
         {
+          "version": "1.1.2",
+          "date": "2026-11-25T03:50:23Z",
+          "downloadURL": "https://github.com/yunseen/skrrt/releases/download/v1.1.2/Skrrt.ipa",
+          "size": 472745,
+          "minOSVersion": "26.0",
+          "localizedDescription": "Skrrt 1.1.2"
+        },
+        {
           "version": "1.1.1",
           "date": "2026-11-24T21:30:46Z",
           "downloadURL": "https://github.com/yunseen/skrrt/releases/download/v1.1.1/Skrrt.ipa",
