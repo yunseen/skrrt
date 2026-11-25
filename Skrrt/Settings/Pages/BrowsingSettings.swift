@@ -31,6 +31,19 @@ struct BrowsingSettings: View {
                     IconLabel("Language", "globe", Color(red: 0.62, green: 0.45, blue: 1))
                 }
             }
+
+            Section {
+                Toggle(isOn: $settings.webInspector) {
+                    IconLabel("Web Inspector", "ladybug.fill", Color(red: 0.55, green: 0.55, blue: 0.58))
+                }
+                Link(destination: PluginDocs.url) {
+                    Label("Plugin Documentation", systemImage: "book.closed")
+                }
+            } header: {
+                Text("For Developers")
+            } footer: {
+                Text("Turn on Web Inspector to debug pages and plugins from Safari on a Mac.")
+            }
         }
         .navigationTitle("Browsing")
         .navigationBarTitleDisplayMode(.inline)
