@@ -400,7 +400,7 @@ struct PluginEditor: View {
             icon = draft.kind == .style ? "paintbrush.fill" : "curlybraces"
             code = draft.kind == .style
                 ? "/* Write CSS here. It is applied to every page that matches. */\nbody {\n  \n}\n"
-                : "// Skrrt API is available as the global `Skrrt`.\nSkrrt.toast('Hello from ' + Skrrt.host);\n"
+                : "// Skrrt API is available as the global `Skrrt`.\nSkrrt.toast('Hello from ' + Skrrt.host, 5000);\n"
         }
     }
 
