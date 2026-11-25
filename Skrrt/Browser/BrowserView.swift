@@ -7,19 +7,19 @@ struct BrowserView: View {
     let openSheet: (Sheet) -> Void
 
     @Environment(TabStore.self) private var tabs
-    @Environment(Settings.self) private var settings
+    @Environment(KeyboardState.self) private var keyboard
     @Environment(\.modelContext) private var context
     @State private var toast: LocalizedStringKey?
 
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack(alignment: .bottom) {
             if let tab = tabs.current {
                 page(for: tab)
-                top(for: tab)
             }
         }
+        .overlay(alignment: .bottom) { toastView }
         .safeAreaInset(edge: .bottom, spacing: 0) {
-            if let tab = tabs.current {
+            if let tab = tabs.current, !keyboard.isVisible {
                 BottomBar(
                     tab: tab,
                     showSwitcher: showSwitcher,
@@ -27,11 +27,14 @@ struct BrowserView: View {
                     openSheet: openSheet,
                     addBookmark: { addBookmark(for: tab) }
                 )
+                .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
-        .animation(.smooth(duration: 0.35), value: tabs.current?.isCompact)
+        .animation(.smooth(duration: 0.25), value: keyboard.isVisible)
     }
 
+    // The page stays inside the safe area so the header of a site is never under the status bar.
+    // The area behind the status bar takes the color of the page, like in Safari.
     @ViewBuilder
     private func page(for tab: Tab) -> some View {
         if tab.url == nil {
@@ -39,27 +42,22 @@ struct BrowserView: View {
                 .id(tab.id)
         } else {
             WebContainer(webView: tab.webView, bottomInset: 0)
-                .ignoresSafeArea(edges: .top)
+                .background(Color(uiColor: tab.topColor).ignoresSafeArea())
                 .id(tab.id)
         }
     }
 
-    private func top(for tab: Tab) -> some View {
-        VStack(spacing: 8) {
-            if tab.url != nil && !tab.isCompact && settings.showsShield {
-                ShieldBadge(tab: tab)
-                    .transition(.scale(scale: 0.85).combined(with: .opacity))
-            }
-            if let toast {
-                Text(toast)
-                    .font(.system(size: 13, weight: .semibold))
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 8)
-                    .glassEffect(.regular, in: .capsule)
-                    .transition(.move(edge: .top).combined(with: .opacity))
-            }
+    @ViewBuilder
+    private var toastView: some View {
+        if let toast {
+            Text(toast)
+                .font(.system(size: 13, weight: .semibold))
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .glassEffect(.regular, in: .capsule)
+                .padding(.bottom, 10)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
         }
-        .animation(.bouncy(duration: 0.45), value: tab.isCompact)
     }
 
     private func addBookmark(for tab: Tab) {

@@ -8,6 +8,7 @@ struct SkrrtApp: App {
     @State private var plugins: PluginStore
     @State private var shortcuts: ShortcutStore
     @State private var tabs: TabStore
+    @State private var keyboard = KeyboardState()
 
     init() {
         let settings = Settings()
@@ -35,6 +36,7 @@ struct SkrrtApp: App {
                 .environment(tabs)
                 .environment(shortcuts)
                 .environment(plugins)
+                .environment(keyboard)
                 .environment(\.locale, settings.language.locale)
                 .preferredColorScheme(settings.appearance.colorScheme)
                 .tint(settings.accentColor)

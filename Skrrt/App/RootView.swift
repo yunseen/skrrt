@@ -25,6 +25,7 @@ struct RootView: View {
                 showSearch: { showsSearch = true },
                 openSheet: { sheet = $0 }
             )
+            .environment(\.wallpaperPaused, showsSwitcher || showsSearch || sheet != nil)
             if showsSwitcher {
                 TabSwitcherView(dismiss: { showsSwitcher = false })
                     .transition(.scale(scale: 0.94).combined(with: .opacity))
@@ -68,7 +69,14 @@ struct RootView: View {
             tabs.applyBlocking()
             tabs.current?.reload()
         }
-        .onChange(of: settings.darkPages) { tabs.applyPreferences() }
+        .onChange(of: settings.darkPages) {
+            tabs.applyPreferences()
+            tabs.current?.reload()
+        }
+        .onChange(of: settings.smartDark) {
+            tabs.applyPreferences()
+            tabs.current?.reload()
+        }
         .onChange(of: settings.webInspector) { tabs.applyPreferences() }
         .onChange(of: settings.collapsesBars) { tabs.applyPreferences() }
         .onChange(of: settings.appearance) { tabs.applyPreferences() }

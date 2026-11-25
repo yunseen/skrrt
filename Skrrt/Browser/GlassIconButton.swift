@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// A round Liquid Glass button. The whole circle is tappable and the glass reacts to touch.
 struct GlassIconButton: View {
     let symbol: String
     var isEnabled = true
@@ -10,9 +11,10 @@ struct GlassIconButton: View {
             Image(systemName: symbol)
                 .font(.system(size: Metrics.symbolSize, weight: .semibold))
                 .frame(width: Metrics.controlSize, height: Metrics.controlSize)
-                .glassEffect(.regular, in: .circle)
+                .contentShape(Circle())
+                .glassEffect(.regular.interactive(isEnabled), in: .circle)
         }
-        .buttonStyle(PressStyle())
+        .buttonStyle(.plain)
         .disabled(!isEnabled)
         .opacity(isEnabled ? 1 : 0.4)
     }

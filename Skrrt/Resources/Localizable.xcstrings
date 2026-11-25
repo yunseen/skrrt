@@ -2100,6 +2100,26 @@
           }
         }
       }
+    },
+    "Smart Dark Mode": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Умная тёмная тема"
+          }
+        }
+      }
+    },
+    "Darkens pages that have no dark theme of their own and keeps photos and video in their real colors.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Затемняет страницы без своей тёмной темы, а фото и видео оставляет в настоящих цветах."
+          }
+        }
+      }
     }
   },
   "version": "1.0"
