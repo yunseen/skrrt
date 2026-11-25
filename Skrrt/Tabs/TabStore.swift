@@ -10,13 +10,13 @@ final class TabStore {
 
     @ObservationIgnored var recorder: (@MainActor (String, URL) -> Void)?
     @ObservationIgnored private let settings: Settings
-    @ObservationIgnored private let extensions: ExtensionStore
+    @ObservationIgnored private let plugins: PluginStore
     @ObservationIgnored private let blocker = ContentBlocker()
     @ObservationIgnored private let sessionKey = "session.tabs"
 
-    init(settings: Settings, extensions: ExtensionStore) {
+    init(settings: Settings, plugins: PluginStore) {
         self.settings = settings
-        self.extensions = extensions
+        self.plugins = plugins
     }
 
     var current: Tab? {
@@ -28,7 +28,7 @@ final class TabStore {
     func start() {
         guard !isStarted else { return }
         isStarted = true
-        if ProcessInfo.processInfo.arguments.contains("-skrrt-reset") {
+        if ProcessInfo.processInfo.arguments.contains("-skrrt-reset") || !settings.restoresTabs {
             UserDefaults.standard.removeObject(forKey: sessionKey)
         }
         restore()
@@ -82,13 +82,8 @@ final class TabStore {
         }
     }
 
-    func applyUserAgent() {
-        applyPreferences()
-        current?.reload()
-    }
-
     func applyPreferences() {
-        let scripts = extensions.makeScripts()
+        let scripts = plugins.makeScripts()
         for tab in tabs {
             tab.applyPreferences(settings, scripts: scripts)
         }
@@ -106,7 +101,7 @@ final class TabStore {
     }
 
     private func attach(_ tab: Tab) {
-        tab.applyPreferences(settings, scripts: extensions.makeScripts())
+        tab.applyPreferences(settings, scripts: plugins.makeScripts())
         blocker.apply(to: tab, enabled: settings.blocksContent)
         tab.onVisit = { [weak self] title, url in self?.recorder?(title, url) }
         tab.onOpenTab = { [weak self] url in self?.open(url) }

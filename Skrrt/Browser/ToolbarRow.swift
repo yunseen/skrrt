@@ -58,18 +58,12 @@ struct ToolbarRow: View {
     }
 
     private var menu: some View {
-        @Bindable var settings = settings
-        return Menu {
+        Menu {
             Button("New Tab", systemImage: "plus") { tabs.open() }
             Button("New Private Tab", systemImage: "eye.slash") { tabs.open(isPrivate: true) }
             Divider()
             Button("Add Bookmark", systemImage: "star", action: addBookmark)
                 .disabled(tab.url == nil)
-            Picker("Site Mode", selection: $settings.userAgent) {
-                ForEach(UserAgentMode.allCases) { mode in
-                    Text(mode.title).tag(mode)
-                }
-            }
             Divider()
             Button("Settings", systemImage: "gearshape") { openSheet(.settings) }
         } label: {

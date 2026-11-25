@@ -5,17 +5,17 @@ import SwiftUI
 struct SkrrtApp: App {
     private let container: ModelContainer
     @State private var settings: Settings
-    @State private var extensions: ExtensionStore
+    @State private var plugins: PluginStore
     @State private var shortcuts: ShortcutStore
     @State private var tabs: TabStore
 
     init() {
         let settings = Settings()
-        let extensions = ExtensionStore()
+        let plugins = PluginStore()
         _settings = State(initialValue: settings)
-        _extensions = State(initialValue: extensions)
+        _plugins = State(initialValue: plugins)
         _shortcuts = State(initialValue: ShortcutStore())
-        _tabs = State(initialValue: TabStore(settings: settings, extensions: extensions))
+        _tabs = State(initialValue: TabStore(settings: settings, plugins: plugins))
         if let disk = try? ModelContainer(for: Bookmark.self, HistoryEntry.self) {
             container = disk
         } else if let memory = try? ModelContainer(
@@ -34,7 +34,7 @@ struct SkrrtApp: App {
                 .environment(settings)
                 .environment(tabs)
                 .environment(shortcuts)
-                .environment(extensions)
+                .environment(plugins)
                 .environment(\.locale, settings.language.locale)
                 .preferredColorScheme(settings.appearance.colorScheme)
                 .tint(settings.accentColor)

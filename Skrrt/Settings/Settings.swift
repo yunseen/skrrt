@@ -6,7 +6,6 @@ import SwiftUI
 final class Settings {
     var appearance: Appearance { didSet { store(appearance.rawValue, Key.appearance) } }
     var language: Language { didSet { store(language.rawValue, Key.language) } }
-    var userAgent: UserAgentMode { didSet { store(userAgent.rawValue, Key.userAgent) } }
 
     var searchEngine: SearchEngineKind { didSet { store(searchEngine.rawValue, Key.searchEngine) } }
     var customSearchURL: String { didSet { store(customSearchURL, Key.customSearchURL) } }
@@ -32,11 +31,15 @@ final class Settings {
     var allowsJavaScript: Bool { didSet { store(allowsJavaScript, Key.allowsJavaScript) } }
     var clearsOnLaunch: Bool { didSet { store(clearsOnLaunch, Key.clearsOnLaunch) } }
 
+    var restoresTabs: Bool { didSet { store(restoresTabs, Key.restoresTabs) } }
+    var collapsesBars: Bool { didSet { store(collapsesBars, Key.collapsesBars) } }
+    var showsShield: Bool { didSet { store(showsShield, Key.showsShield) } }
+    var webInspector: Bool { didSet { store(webInspector, Key.webInspector) } }
+
     init() {
         let defaults = UserDefaults.standard
         appearance = Appearance(rawValue: defaults.string(forKey: Key.appearance) ?? "") ?? .system
         language = Language(rawValue: defaults.string(forKey: Key.language) ?? "") ?? .russian
-        userAgent = UserAgentMode(rawValue: defaults.string(forKey: Key.userAgent) ?? "") ?? .safari
 
         searchEngine = SearchEngineKind(rawValue: defaults.string(forKey: Key.searchEngine) ?? "") ?? .duckduckgo
         customSearchURL = defaults.string(forKey: Key.customSearchURL) ?? "https://duckduckgo.com/?q=%s"
@@ -61,6 +64,11 @@ final class Settings {
         blocksPopups = defaults.bool(forKey: Key.blocksPopups)
         allowsJavaScript = defaults.object(forKey: Key.allowsJavaScript) as? Bool ?? true
         clearsOnLaunch = defaults.bool(forKey: Key.clearsOnLaunch)
+
+        restoresTabs = defaults.object(forKey: Key.restoresTabs) as? Bool ?? true
+        collapsesBars = defaults.object(forKey: Key.collapsesBars) as? Bool ?? true
+        showsShield = defaults.object(forKey: Key.showsShield) as? Bool ?? true
+        webInspector = defaults.bool(forKey: Key.webInspector)
     }
 
     var accentColor: Color {
@@ -99,7 +107,6 @@ final class Settings {
     private enum Key {
         static let language = "settings.language"
         static let appearance = "settings.appearance"
-        static let userAgent = "settings.userAgent"
         static let blocksContent = "settings.blocksContent"
         static let hidesAddresses = "settings.hidesAddresses"
         static let searchEngine = "settings.searchEngine"
@@ -120,5 +127,9 @@ final class Settings {
         static let blocksPopups = "settings.blocksPopups"
         static let allowsJavaScript = "settings.allowsJavaScript"
         static let clearsOnLaunch = "settings.clearsOnLaunch"
+        static let restoresTabs = "settings.restoresTabs"
+        static let collapsesBars = "settings.collapsesBars"
+        static let showsShield = "settings.showsShield"
+        static let webInspector = "settings.webInspector"
     }
 }

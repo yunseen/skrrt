@@ -7,6 +7,7 @@ struct BrowserView: View {
     let openSheet: (Sheet) -> Void
 
     @Environment(TabStore.self) private var tabs
+    @Environment(Settings.self) private var settings
     @Environment(\.modelContext) private var context
     @State private var toast: LocalizedStringKey?
 
@@ -45,7 +46,7 @@ struct BrowserView: View {
 
     private func top(for tab: Tab) -> some View {
         VStack(spacing: 8) {
-            if tab.url != nil && !tab.isCompact {
+            if tab.url != nil && !tab.isCompact && settings.showsShield {
                 ShieldBadge(tab: tab)
                     .transition(.scale(scale: 0.85).combined(with: .opacity))
             }

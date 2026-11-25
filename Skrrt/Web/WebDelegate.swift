@@ -3,7 +3,6 @@ import WebKit
 
 @MainActor
 final class WebDelegate: NSObject, WKNavigationDelegate, WKUIDelegate {
-    var prefersDesktop = false
     var allowsJavaScript = true
     var blocksPopups = false
     var rewrite: ((URL) -> URL?)?
@@ -39,7 +38,7 @@ final class WebDelegate: NSObject, WKNavigationDelegate, WKUIDelegate {
             }
         }
 
-        preferences.preferredContentMode = prefersDesktop ? .desktop : .mobile
+        preferences.preferredContentMode = .mobile
         preferences.allowsContentJavaScript = allowsJavaScript
         return (.allow, preferences)
     }

@@ -18,6 +18,7 @@ final class Tab: Identifiable {
     private(set) var isSecure = true
     private(set) var snapshot: UIImage?
     var isCompact = false
+    @ObservationIgnored var collapsesBars = true
 
     @ObservationIgnored var onVisit: (@MainActor (String, URL) -> Void)?
     @ObservationIgnored var onOpenTab: (@MainActor (URL) -> Void)?
@@ -90,13 +91,11 @@ final class Tab: Identifiable {
         setCompact(false)
     }
 
-    func applyUserAgent(_ mode: UserAgentMode) {
-        webView.customUserAgent = mode.userAgent
-        delegate.prefersDesktop = mode == .desktop
-    }
-
     func applyPreferences(_ settings: Settings, scripts: [WKUserScript]) {
-        applyUserAgent(settings.userAgent)
+        webView.customUserAgent = nil
+        webView.isInspectable = settings.webInspector
+        collapsesBars = settings.collapsesBars
+        if !collapsesBars { setCompact(false) }
         webView.overrideUserInterfaceStyle = settings.webStyle
         delegate.allowsJavaScript = settings.allowsJavaScript
         delegate.blocksPopups = settings.blocksPopups
@@ -190,7 +189,7 @@ final class Tab: Identifiable {
     private func scrolled(to offset: CGFloat) {
         let delta = offset - lastOffset
         lastOffset = offset
-        guard abs(delta) > 6 else { return }
+        guard collapsesBars, abs(delta) > 6 else { return }
         if offset <= 0 {
             setCompact(false)
         } else if delta > 0 && offset > 80 {

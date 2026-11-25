@@ -11,7 +11,7 @@ enum Sheet: String, Identifiable {
 struct RootView: View {
     @Environment(TabStore.self) private var tabs
     @Environment(Settings.self) private var settings
-    @Environment(ExtensionStore.self) private var extensions
+    @Environment(PluginStore.self) private var plugins
     @Environment(\.modelContext) private var context
     @State private var showsSwitcher = false
     @State private var showsSearch = false
@@ -54,21 +54,23 @@ struct RootView: View {
             tabs.recorder = { title, url in
                 context.insert(HistoryEntry(title: title, url: url))
             }
-            extensions.onChange = { tabs.applyPreferences() }
+            plugins.onChange = {
+                tabs.applyPreferences()
+                tabs.current?.reload()
+            }
             if settings.clearsOnLaunch {
                 await WebEngine.clearWebsiteData()
                 try? context.delete(model: HistoryEntry.self)
             }
             await tabs.prepare()
         }
-        .onChange(of: settings.userAgent) {
-            tabs.applyUserAgent()
-        }
         .onChange(of: settings.blocksContent) {
             tabs.applyBlocking()
             tabs.current?.reload()
         }
         .onChange(of: settings.darkPages) { tabs.applyPreferences() }
+        .onChange(of: settings.webInspector) { tabs.applyPreferences() }
+        .onChange(of: settings.collapsesBars) { tabs.applyPreferences() }
         .onChange(of: settings.appearance) { tabs.applyPreferences() }
         .onChange(of: settings.upgradesHTTPS) { tabs.applyPreferences() }
         .onChange(of: settings.stripsTracking) { tabs.applyPreferences() }
