@@ -1230,6 +1230,16 @@
           }
         }
       }
+    },
+    "Close Tab": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Закрыть вкладку"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

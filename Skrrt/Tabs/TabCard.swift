@@ -7,28 +7,33 @@ struct TabCard: View {
     let close: () -> Void
 
     var body: some View {
-        Button(action: select) {
-            Color.clear
-                .frame(height: 230)
-                .overlay(alignment: .top) { preview }
-                .clipped()
-                .overlay(alignment: .bottom) { caption }
-                .clipShape(RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous))
-                .overlay {
-                    RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
-                        .strokeBorder(isSelected ? Color.accentColor : Color.primary.opacity(0.12), lineWidth: isSelected ? 3 : 1)
-                }
-        }
-        .buttonStyle(.plain)
-        .overlay(alignment: .topTrailing) {
+        ZStack(alignment: .topTrailing) {
+            Button(action: select) {
+                Color.clear
+                    .frame(height: 230)
+                    .overlay(alignment: .top) { preview }
+                    .clipped()
+                    .overlay(alignment: .bottom) { caption }
+                    .clipShape(RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous)
+                            .strokeBorder(isSelected ? Color.accentColor : Color.primary.opacity(0.12), lineWidth: isSelected ? 3 : 1)
+                    }
+                    .contentShape(RoundedRectangle(cornerRadius: Metrics.cardRadius, style: .continuous))
+            }
+            .buttonStyle(.plain)
+
             Button(action: close) {
                 Image(systemName: "xmark")
-                    .font(.system(size: 12, weight: .bold))
-                    .frame(width: 32, height: 32)
+                    .font(.system(size: 13, weight: .bold))
+                    .frame(width: 40, height: 40)
                     .glassEffect(.regular, in: .circle)
+                    .contentShape(Circle())
             }
             .buttonStyle(PressStyle())
-            .padding(8)
+            .padding(6)
+            .zIndex(1)
+            .accessibilityLabel(Text("Close Tab"))
         }
     }
 
