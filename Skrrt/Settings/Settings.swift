@@ -87,6 +87,15 @@ final class Settings {
         return searchEngine.searchTemplate
     }
 
+    /// "ru" or "en": the language plugins and the store use for names and messages.
+    var languageCode: String {
+        switch language {
+        case .russian: return "ru"
+        case .english: return "en"
+        case .system: return Locale.current.language.languageCode?.identifier == "ru" ? "ru" : "en"
+        }
+    }
+
     var webStyle: UIUserInterfaceStyle {
         switch darkPages {
         case .off:

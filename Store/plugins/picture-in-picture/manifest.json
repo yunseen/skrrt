@@ -1,0 +1,59 @@
+{
+  "id": "picture-in-picture",
+  "category": "video",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Picture in Picture",
+    "ru": "Картинка в картинке"
+  },
+  "summary": {
+    "en": "Moves a video into a floating window",
+    "ru": "Переносит видео в плавающее окно"
+  },
+  "description": {
+    "en": "Adds a round button on pages with a video. Tap it to keep watching in a small floating window while you use other apps.",
+    "ru": "Добавляет круглую кнопку на страницы с видео. Нажмите её, чтобы смотреть в маленьком плавающем окне, пока вы пользуетесь другими приложениями."
+  },
+  "icon": {
+    "symbol": "pip",
+    "color": "#5E5CE6"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "side",
+      "type": "choice",
+      "title": {
+        "en": "Button position",
+        "ru": "Положение кнопки"
+      },
+      "default": "right",
+      "choices": [
+        {
+          "value": "right",
+          "title": {
+            "en": "Right",
+            "ru": "Справа"
+          }
+        },
+        {
+          "value": "left",
+          "title": {
+            "en": "Left",
+            "ru": "Слева"
+          }
+        }
+      ]
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

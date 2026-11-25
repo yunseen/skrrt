@@ -1,0 +1,52 @@
+{
+  "id": "link-cleaner",
+  "category": "privacy",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Link Cleaner",
+    "ru": "Чистые ссылки"
+  },
+  "summary": {
+    "en": "Removes tracking from links",
+    "ru": "Убирает слежку из ссылок"
+  },
+  "description": {
+    "en": "Cleans the links on every page like ClearURLs: it removes tracking parameters such as utm_source or fbclid and unwraps redirects of Google, Yandex, VK, Facebook and Instagram so the link goes straight to the site.",
+    "ru": "Чистит ссылки на страницах как ClearURLs: убирает трекинг-параметры вроде utm_source и fbclid и разворачивает редиректы Google, Яндекса, VK, Facebook и Instagram, чтобы ссылка вела прямо на сайт."
+  },
+  "icon": {
+    "symbol": "link",
+    "color": "#34C759"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "stripParams",
+      "type": "toggle",
+      "title": {
+        "en": "Remove tracking parameters",
+        "ru": "Убирать трекинг-параметры"
+      },
+      "default": true
+    },
+    {
+      "key": "unwrap",
+      "type": "toggle",
+      "title": {
+        "en": "Unwrap redirect links",
+        "ru": "Разворачивать ссылки-редиректы"
+      },
+      "default": true
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

@@ -1,0 +1,60 @@
+{
+  "id": "night-shift",
+  "category": "look",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Night Shift",
+    "ru": "Ночной режим"
+  },
+  "summary": {
+    "en": "A warm tint that is easier on the eyes",
+    "ru": "Тёплый оттенок, который щадит глаза"
+  },
+  "description": {
+    "en": "Adds a warm tint and optional dimming over every page so reading in the evening is more comfortable.",
+    "ru": "Добавляет поверх страниц тёплый оттенок и, если нужно, затемнение, чтобы вечером читать было удобнее."
+  },
+  "icon": {
+    "symbol": "sun.haze.fill",
+    "color": "#FF9500"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "start",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "warmth",
+      "type": "slider",
+      "title": {
+        "en": "Warmth",
+        "ru": "Теплота"
+      },
+      "default": 25,
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "%"
+    },
+    {
+      "key": "dim",
+      "type": "slider",
+      "title": {
+        "en": "Dimming",
+        "ru": "Затемнение"
+      },
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "%"
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

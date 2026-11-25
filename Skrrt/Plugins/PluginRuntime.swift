@@ -3,40 +3,58 @@ import WebKit
 
 /// Builds the user scripts WebKit injects into every page.
 ///
+/// Like content scripts in Chrome, plugins run in an isolated world: they share the page's DOM but not
+/// its JavaScript variables, and the page cannot reach them or the bridge to the app.
 /// A shared prelude defines the `Skrrt` API once. Each enabled plugin is then wrapped in its own
-/// function scope, with an address filter, so plugins cannot clash with each other or with the page.
+/// function scope with an address filter, its settings and its per-site switches.
 enum PluginRuntime {
-    static let apiVersion = "1.2"
+    static let apiVersion = "1.3"
+    static let world = WKContentWorld.world(name: "SkrrtPlugins")
 
-    static func scripts(for plugins: [Plugin]) -> [WKUserScript] {
+    @MainActor
+    static func scripts(for plugins: [Plugin], rules: SiteRules, language: String) -> [WKUserScript] {
+        var result: [WKUserScript] = []
         let enabled = plugins.filter(\.isEnabled)
-        guard !enabled.isEmpty else { return [] }
-        var result = [WKUserScript(source: prelude, injectionTime: .atDocumentStart, forMainFrameOnly: true)]
-        for plugin in enabled {
-            result.append(WKUserScript(
-                source: wrap(plugin),
-                injectionTime: plugin.runsAtStart ? .atDocumentStart : .atDocumentEnd,
-                forMainFrameOnly: true
-            ))
+        if !enabled.isEmpty {
+            result.append(WKUserScript(source: prelude, injectionTime: .atDocumentStart, forMainFrameOnly: true, in: world))
+            if enabled.contains(where: \.inPage) {
+                result.append(WKUserScript(source: prelude, injectionTime: .atDocumentStart, forMainFrameOnly: true, in: .page))
+            }
+            for plugin in enabled {
+                result.append(WKUserScript(
+                    source: wrap(plugin, language: language),
+                    injectionTime: plugin.runsAtStart ? .atDocumentStart : .atDocumentEnd,
+                    forMainFrameOnly: true,
+                    in: plugin.inPage ? .page : world
+                ))
+            }
+        }
+        if let hidden = rules.script {
+            result.append(hidden)
         }
         return result
     }
 
-    static func wrap(_ plugin: Plugin) -> String {
-        let info = literal(["id": plugin.id, "name": plugin.name, "version": plugin.version])
-        let matches = literal(plugin.matches)
-        let excludes = literal(plugin.excludes)
+    static func wrap(_ plugin: Plugin, language: String) -> String {
+        let info = json([
+            "id": plugin.id,
+            "name": plugin.name.text("en"),
+            "version": plugin.version,
+            "lang": language,
+            "options": plugin.effectiveValues.mapValues(\.jsonObject),
+            "blocked": plugin.blockedHosts
+        ])
         let body: String
         switch plugin.kind {
         case .style:
-            body = "Skrrt.addStyle(\(literal(plugin.code)));"
+            body = "Skrrt.addStyle(\(json(plugin.code)));"
         case .script:
             body = plugin.code
         }
         return """
         (function(){try{
         var P=\(info);
-        if(!window.__skrrtMatch(\(matches),\(excludes)))return;
+        if(!window.__skrrtMatch(\(json(plugin.matches)),\(json(plugin.excludes)),P.blocked))return;
         var Skrrt=window.__skrrtMake(P),skrrt=Skrrt;
         (function(Skrrt,skrrt){
         \(body)
@@ -45,13 +63,16 @@ enum PluginRuntime {
         """
     }
 
-    private static func literal<T: Encodable>(_ value: T) -> String {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.withoutEscapingSlashes]
-        guard let data = try? encoder.encode(value), let text = String(data: data, encoding: .utf8) else {
-            return "null"
+    static func json(_ value: Any) -> String {
+        if let text = value as? String {
+            guard let data = try? JSONSerialization.data(withJSONObject: [text], options: [.withoutEscapingSlashes]),
+                  let string = String(data: data, encoding: .utf8) else { return "\"\"" }
+            return String(string.dropFirst().dropLast())
         }
-        return text
+        guard JSONSerialization.isValidJSONObject(value),
+              let data = try? JSONSerialization.data(withJSONObject: value, options: [.withoutEscapingSlashes]),
+              let string = String(data: data, encoding: .utf8) else { return "null" }
+        return string
     }
 
     // swiftlint:disable line_length
@@ -71,17 +92,24 @@ enum PluginRuntime {
       var h=bareHost();p=p.replace(/^www\./,'').replace(/^\*\./,'');
       return h===p||h.slice(-(p.length+1))==='.'+p;
     }
-    window.__skrrtMatch=function(inc,exc){
+    window.__skrrtMatch=function(inc,exc,blocked){
+      if((blocked||[]).some(matchOne))return false;
       var ok=!inc||!inc.length||inc.some(matchOne);
       return ok&&!(exc||[]).some(matchOne);
     };
     window.__skrrtMake=function(P){
       var prefix='skrrt:'+P.id+':';
       var S={};
-      S.version='1.2';
-      S.plugin=P;
+      var handler=window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.skrrt;
+      S.version='1.3';
+      S.plugin={id:P.id,name:P.name,version:P.version};
+      S.lang=P.lang||'en';
       S.host=bareHost();
       S.isDark=!!(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches);
+      S.options={
+        get:function(key,fallback){return Object.prototype.hasOwnProperty.call(P.options,key)?P.options[key]:fallback;},
+        all:function(){return JSON.parse(JSON.stringify(P.options));}
+      };
       S.log=function(){var a=[].slice.call(arguments);a.unshift('[Skrrt:'+P.name+']');console.log.apply(console,a);};
       S.ready=function(fn){
         if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){fn();},{once:true});
@@ -99,21 +127,24 @@ enum PluginRuntime {
         name=name||'main';
         S.removeStyle(name);
         var key=P.id+':'+name;
+        var parent=document.head||document.documentElement;
+        if(parent){
+          var el=document.createElement('style');
+          el.setAttribute('data-skrrt',key);
+          el.textContent=css;
+          parent.appendChild(el);
+          if(el.sheet){sheets[key]={el:el};return el;}
+          el.remove();
+        }
         try{
-          if(window.CSSStyleSheet&&document.adoptedStyleSheets!==undefined){
-            var sheet=new CSSStyleSheet();
-            sheet.replaceSync(css);
-            document.adoptedStyleSheets=document.adoptedStyleSheets.concat([sheet]);
-            sheets[key]={sheet:sheet};
-            return sheet;
-          }
+          var sheet=new CSSStyleSheet();
+          sheet.replaceSync(css);
+          document.adoptedStyleSheets=document.adoptedStyleSheets.concat([sheet]);
+          sheets[key]={sheet:sheet};
+          return sheet;
         }catch(e){}
-        var el=document.createElement('style');
-        el.setAttribute('data-skrrt',key);
-        el.textContent=css;
-        (document.head||document.documentElement).appendChild(el);
-        sheets[key]={el:el};
-        return el;
+        if(!parent){document.addEventListener('DOMContentLoaded',function(){S.addStyle(css,name);},{once:true});}
+        return null;
       };
       S.hide=function(selector){return S.addStyle(selector+'{display:none!important}','hide:'+selector);};
       S.observe=function(selector,callback){
@@ -171,6 +202,17 @@ enum PluginRuntime {
         get:function(k,d){try{var v=localStorage.getItem(prefix+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
         set:function(k,v){try{localStorage.setItem(prefix+k,JSON.stringify(v));}catch(e){}},
         remove:function(k){try{localStorage.removeItem(prefix+k);}catch(e){}}
+      };
+      S.fetch=function(url,init){
+        if(!handler)return fetch(url,init);
+        init=init||{};
+        return handler.postMessage({op:'fetch',plugin:P.id,url:String(url),init:{method:init.method||'GET',headers:init.headers||{},body:init.body==null?null:String(init.body)}}).then(function(r){
+          return {
+            ok:r.ok,status:r.status,headers:r.headers||{},
+            text:function(){return Promise.resolve(r.body);},
+            json:function(){try{return Promise.resolve(JSON.parse(r.body));}catch(e){return Promise.reject(e);}}
+          };
+        });
       };
       S.copy=function(text){
         function fallback(){

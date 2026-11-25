@@ -1,0 +1,4 @@
+/* Black and White: shows every page in grayscale. */
+html {
+  filter: grayscale(1) !important;
+}

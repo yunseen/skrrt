@@ -1,0 +1,63 @@
+{
+  "id": "overlay-remover",
+  "category": "privacy",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Overlay Remover",
+    "ru": "Без навязчивых окон"
+  },
+  "summary": {
+    "en": "Removes full-screen subscribe walls",
+    "ru": "Убирает полноэкранные окна подписки"
+  },
+  "description": {
+    "en": "Finds full-screen layers that cover the page (subscribe, sign in, newsletter) and removes them, then unlocks scrolling.",
+    "ru": "Находит слои, которые закрывают всю страницу (подписка, вход, рассылка), убирает их и возвращает прокрутку."
+  },
+  "icon": {
+    "symbol": "xmark.rectangle.fill",
+    "color": "#FF3B30"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "mode",
+      "type": "choice",
+      "title": {
+        "en": "Check",
+        "ru": "Проверять"
+      },
+      "default": "auto",
+      "choices": [
+        {
+          "value": "auto",
+          "title": {
+            "en": "After the page loads",
+            "ru": "После загрузки страницы"
+          }
+        },
+        {
+          "value": "always",
+          "title": {
+            "en": "All the time",
+            "ru": "Всё время"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Checking all the time uses a little more battery.",
+        "ru": "Проверка всё время немного расходует батарею."
+      }
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

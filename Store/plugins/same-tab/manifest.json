@@ -1,0 +1,33 @@
+{
+  "id": "same-tab",
+  "category": "tools",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Same Tab",
+    "ru": "Ссылки в той же вкладке"
+  },
+  "summary": {
+    "en": "Stops links from opening new windows",
+    "ru": "Не даёт ссылкам открываться в новых окнах"
+  },
+  "description": {
+    "en": "Links that ask for a new window open in the current tab, so you do not end up with dozens of tabs.",
+    "ru": "Ссылки, которые просят новое окно, открываются в текущей вкладке, и вкладок не становится десятки."
+  },
+  "icon": {
+    "symbol": "arrow.up.right.square",
+    "color": "#5E5CE6"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [],
+  "author": "Skrrt",
+  "format": 1
+}

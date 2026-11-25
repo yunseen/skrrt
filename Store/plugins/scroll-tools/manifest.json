@@ -1,0 +1,68 @@
+{
+  "id": "scroll-tools",
+  "category": "tools",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Scroll Tools",
+    "ru": "Помощник прокрутки"
+  },
+  "summary": {
+    "en": "Progress bar and jumps to the top and bottom",
+    "ru": "Полоса прогресса и переходы наверх и вниз"
+  },
+  "description": {
+    "en": "Shows how far you have read as a thin line at the top and adds round buttons to jump to the top or to the end of the page.",
+    "ru": "Показывает, сколько прочитано, тонкой линией сверху и добавляет круглые кнопки перехода наверх и в конец страницы."
+  },
+  "icon": {
+    "symbol": "arrow.up.arrow.down.circle.fill",
+    "color": "#30B0C7"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "progress",
+      "type": "toggle",
+      "title": {
+        "en": "Show the progress line",
+        "ru": "Показывать линию прогресса"
+      },
+      "default": true
+    },
+    {
+      "key": "side",
+      "type": "choice",
+      "title": {
+        "en": "Buttons",
+        "ru": "Кнопки"
+      },
+      "default": "right",
+      "choices": [
+        {
+          "value": "right",
+          "title": {
+            "en": "Right",
+            "ru": "Справа"
+          }
+        },
+        {
+          "value": "left",
+          "title": {
+            "en": "Left",
+            "ru": "Слева"
+          }
+        }
+      ]
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

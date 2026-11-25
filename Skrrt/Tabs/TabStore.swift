@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import WebKit
 
 @MainActor
 @Observable
@@ -11,12 +12,17 @@ final class TabStore {
     @ObservationIgnored var recorder: (@MainActor (String, URL) -> Void)?
     @ObservationIgnored private let settings: Settings
     @ObservationIgnored private let plugins: PluginStore
+    @ObservationIgnored private let rules: SiteRules
+    @ObservationIgnored private let bridge = PluginBridge()
     @ObservationIgnored private let blocker = ContentBlocker()
     @ObservationIgnored private let sessionKey = "session.tabs"
 
-    init(settings: Settings, plugins: PluginStore) {
+    init(settings: Settings, plugins: PluginStore, rules: SiteRules) {
         self.settings = settings
         self.plugins = plugins
+        self.rules = rules
+        bridge.plugins = plugins
+        bridge.rules = rules
     }
 
     var current: Tab? {
@@ -82,8 +88,12 @@ final class TabStore {
         }
     }
 
+    private func pluginScripts() -> [WKUserScript] {
+        PluginRuntime.scripts(for: plugins.items, rules: rules, language: settings.languageCode)
+    }
+
     func applyPreferences() {
-        let scripts = plugins.makeScripts()
+        let scripts = pluginScripts()
         for tab in tabs {
             tab.applyPreferences(settings, scripts: scripts)
         }
@@ -101,7 +111,8 @@ final class TabStore {
     }
 
     private func attach(_ tab: Tab) {
-        tab.applyPreferences(settings, scripts: plugins.makeScripts())
+        tab.applyPreferences(settings, scripts: pluginScripts())
+        tab.webView.configuration.userContentController.addScriptMessageHandler(bridge, contentWorld: PluginRuntime.world, name: "skrrt")
         blocker.apply(to: tab, enabled: settings.blocksContent)
         tab.onVisit = { [weak self] title, url in self?.recorder?(title, url) }
         tab.onOpenTab = { [weak self] url in self?.open(url) }

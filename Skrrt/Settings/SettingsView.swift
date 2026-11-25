@@ -18,7 +18,7 @@ struct SettingsView: View {
                 }
                 Section {
                     NavigationLink {
-                        PluginsView()
+                        PluginsHomeView()
                     } label: {
                         HStack {
                             IconLabel("Plugins", "puzzlepiece.extension.fill", Color(red: 0.2, green: 0.8, blue: 0.95))

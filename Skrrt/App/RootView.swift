@@ -4,6 +4,7 @@ import SwiftUI
 enum Sheet: String, Identifiable {
     case library
     case settings
+    case site
 
     var id: String { rawValue }
 }
@@ -12,6 +13,7 @@ struct RootView: View {
     @Environment(TabStore.self) private var tabs
     @Environment(Settings.self) private var settings
     @Environment(PluginStore.self) private var plugins
+    @Environment(SiteRules.self) private var rules
     @Environment(\.modelContext) private var context
     @State private var showsSwitcher = false
     @State private var showsSearch = false
@@ -48,6 +50,10 @@ struct RootView: View {
                 }
             case .settings:
                 SettingsView()
+            case .site:
+                if let tab = tabs.current {
+                    SitePluginsSheet(tab: tab)
+                }
             }
         }
         .task {
@@ -58,6 +64,9 @@ struct RootView: View {
             plugins.onChange = {
                 tabs.applyPreferences()
                 tabs.current?.reload()
+            }
+            rules.onChange = {
+                tabs.applyPreferences()
             }
             if settings.clearsOnLaunch {
                 await WebEngine.clearWebsiteData()

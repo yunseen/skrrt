@@ -1,0 +1,33 @@
+{
+  "id": "black-white",
+  "category": "look",
+  "kind": "style",
+  "file": "style.css",
+  "version": "1.0.0",
+  "name": {
+    "en": "Black and White",
+    "ru": "Чёрно-белый режим"
+  },
+  "summary": {
+    "en": "Shows every page in grayscale",
+    "ru": "Показывает страницы без цвета"
+  },
+  "description": {
+    "en": "Removes all color from web pages. Useful to focus on the text and to rest your eyes.",
+    "ru": "Убирает цвет со всех страниц. Помогает сосредоточиться на тексте и отдохнуть глазам."
+  },
+  "icon": {
+    "symbol": "circle.lefthalf.filled",
+    "color": "#8E8E93"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "start",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [],
+  "author": "Skrrt",
+  "format": 1
+}

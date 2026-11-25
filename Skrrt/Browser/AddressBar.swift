@@ -3,8 +3,10 @@ import SwiftUI
 struct AddressBar: View {
     let tab: Tab
     let openSearch: () -> Void
+    let openSite: () -> Void
 
     @Environment(Settings.self) private var settings
+    @Environment(PluginStore.self) private var plugins
 
     var body: some View {
         HStack(spacing: 8) {
@@ -48,6 +50,26 @@ struct AddressBar: View {
     @ViewBuilder
     private var trailing: some View {
         if tab.url != nil && !tab.isCompact {
+            Button(action: openSite) {
+                Image(systemName: "puzzlepiece.extension.fill")
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(activePlugins > 0 ? Color.accentColor : Color.secondary)
+                    .frame(width: 34, height: 34)
+                    .contentShape(Circle())
+                    .overlay(alignment: .topTrailing) {
+                        if activePlugins > 0 {
+                            Text(verbatim: "\(activePlugins)")
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 4)
+                                .frame(minWidth: 14, minHeight: 14)
+                                .background(Color.accentColor, in: Capsule())
+                                .offset(x: 2, y: 1)
+                        }
+                    }
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel(Text("This Site"))
             if settings.showsShield {
                 Button {
                     settings.blocksContent.toggle()
@@ -85,6 +107,11 @@ struct AddressBar: View {
                 .padding(.bottom, 4)
                 .transition(.opacity)
         }
+    }
+
+    private var activePlugins: Int {
+        guard let host = tab.url?.host else { return 0 }
+        return plugins.items.filter { $0.isActive(on: host) }.count
     }
 
     private var leadingSymbol: String {
