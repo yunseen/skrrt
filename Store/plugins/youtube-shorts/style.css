@@ -1,0 +1,14 @@
+/* Hide YouTube Shorts: shelves, tiles and the Shorts tab, on the desktop and the mobile site. */
+ytd-reel-shelf-renderer,
+ytm-reel-shelf-renderer,
+ytm-shorts-lockup-view-model,
+ytm-shorts-lockup-view-model-v2,
+ytd-rich-shelf-renderer[is-shorts],
+ytm-pivot-bar-item-renderer:has(a[href*="/shorts"]),
+ytd-guide-entry-renderer:has(a[title="Shorts"]),
+ytd-mini-guide-entry-renderer[aria-label="Shorts"],
+grid-shelf-view-model:has(a[href^="/shorts"]),
+ytd-video-renderer:has(a[href^="/shorts/"]),
+ytm-video-with-context-renderer:has(a[href^="/shorts/"]) {
+  display: none !important;
+}

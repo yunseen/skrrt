@@ -1,0 +1,36 @@
+{
+  "id": "youtube-shorts",
+  "category": "video",
+  "kind": "style",
+  "file": "style.css",
+  "version": "1.0.0",
+  "name": {
+    "en": "Hide YouTube Shorts",
+    "ru": "Без Shorts на YouTube"
+  },
+  "summary": {
+    "en": "Removes Shorts from the feed and the menu",
+    "ru": "Убирает Shorts из ленты и меню"
+  },
+  "description": {
+    "en": "Hides the Shorts shelves, tiles and the Shorts tab on YouTube so the feed shows regular videos only.",
+    "ru": "Прячет ленты, плитки и вкладку Shorts на YouTube, чтобы в ленте остались обычные видео."
+  },
+  "icon": {
+    "symbol": "rectangle.portrait.slash",
+    "color": "#FF453A",
+    "logoHost": "youtube.com"
+  },
+  "matches": [
+    "youtube.com"
+  ],
+  "excludes": [],
+  "runAt": "start",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [],
+  "author": "Skrrt",
+  "format": 1
+}

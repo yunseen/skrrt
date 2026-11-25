@@ -1,0 +1,33 @@
+{
+  "id": "app-banners",
+  "category": "privacy",
+  "kind": "style",
+  "file": "style.css",
+  "version": "1.0.0",
+  "name": {
+    "en": "App Banner Blocker",
+    "ru": "Баннеры «в приложении»"
+  },
+  "summary": {
+    "en": "Hides \"open in the app\" banners",
+    "ru": "Прячет баннеры «откройте в приложении»"
+  },
+  "description": {
+    "en": "Many sites keep asking you to install their app. This plugin hides those banners and the smart app banners of the site.",
+    "ru": "Многие сайты постоянно предлагают установить приложение. Плагин прячет такие баннеры."
+  },
+  "icon": {
+    "symbol": "app.badge.checkmark",
+    "color": "#AF52DE"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "start",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [],
+  "author": "Skrrt",
+  "format": 1
+}

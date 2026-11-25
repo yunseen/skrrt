@@ -1,0 +1,78 @@
+{
+  "id": "video-speed",
+  "category": "video",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Video Speed",
+    "ru": "Скорость видео"
+  },
+  "summary": {
+    "en": "A floating control for playback speed",
+    "ru": "Плавающая кнопка скорости воспроизведения"
+  },
+  "description": {
+    "en": "Adds a small control to every page with a video: minus, plus and a reset by tapping the number. The speed is remembered between videos. Works on any site, not only on YouTube.",
+    "ru": "Добавляет на каждую страницу с видео небольшую панель: минус, плюс и сброс нажатием на число. Скорость запоминается между видео. Работает на любых сайтах, не только на YouTube."
+  },
+  "icon": {
+    "symbol": "speedometer",
+    "color": "#0A84FF"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "defaultSpeed",
+      "type": "slider",
+      "title": {
+        "en": "Default speed",
+        "ru": "Скорость по умолчанию"
+      },
+      "default": 1.0,
+      "min": 0.25,
+      "max": 4.0,
+      "step": 0.05,
+      "unit": "×"
+    },
+    {
+      "key": "step",
+      "type": "slider",
+      "title": {
+        "en": "Step",
+        "ru": "Шаг"
+      },
+      "default": 0.25,
+      "min": 0.05,
+      "max": 0.5,
+      "step": 0.05,
+      "unit": "×"
+    },
+    {
+      "key": "remember",
+      "type": "toggle",
+      "title": {
+        "en": "Remember the speed",
+        "ru": "Запоминать скорость"
+      },
+      "default": true
+    },
+    {
+      "key": "control",
+      "type": "toggle",
+      "title": {
+        "en": "Show the control",
+        "ru": "Показывать панель"
+      },
+      "default": true
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

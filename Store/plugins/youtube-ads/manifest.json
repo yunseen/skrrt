@@ -1,0 +1,55 @@
+{
+  "id": "youtube-ads",
+  "category": "video",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "YouTube Ad Skipper",
+    "ru": "Без рекламы на YouTube"
+  },
+  "summary": {
+    "en": "Hides ad slots and skips video ads",
+    "ru": "Прячет рекламные блоки и пропускает рекламу"
+  },
+  "description": {
+    "en": "Hides the ad slots on YouTube and fast-forwards the ads that play before and during videos. While an ad plays the sound is muted, and it comes back when the video starts.",
+    "ru": "Прячет рекламные блоки на YouTube и перематывает рекламу до и во время видео. Пока идёт реклама, звук выключен, а когда начинается видео, он возвращается."
+  },
+  "icon": {
+    "symbol": "play.rectangle.fill",
+    "color": "#FF3B30",
+    "logoHost": "youtube.com"
+  },
+  "matches": [
+    "youtube.com"
+  ],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "autoSkip",
+      "type": "toggle",
+      "title": {
+        "en": "Skip video ads",
+        "ru": "Пропускать рекламу в видео"
+      },
+      "default": true
+    },
+    {
+      "key": "muteAds",
+      "type": "toggle",
+      "title": {
+        "en": "Mute while an ad plays",
+        "ru": "Выключать звук во время рекламы"
+      },
+      "default": true
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

@@ -1,0 +1,33 @@
+{
+  "id": "unstick-headers",
+  "category": "tools",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Unstick Headers",
+    "ru": "Открепить шапки"
+  },
+  "summary": {
+    "en": "Gives the screen back from sticky bars",
+    "ru": "Возвращает место, занятое закреплёнными панелями"
+  },
+  "description": {
+    "en": "Bars that stay glued to the top of the page take a lot of space on a phone. This plugin turns them into normal page content.",
+    "ru": "Панели, приклеенные к верху страницы, занимают много места на телефоне. Плагин превращает их в обычное содержимое страницы."
+  },
+  "icon": {
+    "symbol": "pin.slash",
+    "color": "#FF9500"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [],
+  "author": "Skrrt",
+  "format": 1
+}

@@ -1,0 +1,18 @@
+/* App Banner Blocker: hides "open in the app" and "install our app" banners. */
+.smartbanner,
+.smart-banner,
+#smartbanner,
+#smart-banner,
+[class*="app-banner" i],
+[id*="app-banner" i],
+[class*="AppBanner"],
+[class*="install-app" i],
+[class*="open-in-app" i],
+[class*="get-the-app" i],
+[class*="download-app" i],
+[class*="app-promo" i],
+[data-testid*="app-banner" i],
+[aria-label*="Open in app" i],
+[aria-label*="Get the app" i] {
+  display: none !important;
+}

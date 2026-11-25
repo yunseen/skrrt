@@ -1,0 +1,33 @@
+{
+  "id": "allow-selection",
+  "category": "tools",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Allow Copy",
+    "ru": "Разрешить копирование"
+  },
+  "summary": {
+    "en": "Unlocks text selection and copying",
+    "ru": "Разблокирует выделение и копирование"
+  },
+  "description": {
+    "en": "Some sites forbid selecting and copying text. This plugin removes the lock so you can select, copy and use the context menu.",
+    "ru": "Некоторые сайты запрещают выделять и копировать текст. Плагин снимает запрет: можно выделять, копировать и открывать контекстное меню."
+  },
+  "icon": {
+    "symbol": "doc.on.clipboard",
+    "color": "#0A84FF"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "start",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [],
+  "author": "Skrrt",
+  "format": 1
+}

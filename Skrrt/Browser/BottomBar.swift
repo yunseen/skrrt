@@ -10,7 +10,7 @@ struct BottomBar: View {
     var body: some View {
         GlassEffectContainer(spacing: 14) {
             VStack(spacing: 12) {
-                AddressBar(tab: tab, openSearch: showSearch)
+                AddressBar(tab: tab, openSearch: showSearch, openSite: { openSheet(.site) })
                 if !tab.isCompact {
                     ToolbarRow(
                         tab: tab,

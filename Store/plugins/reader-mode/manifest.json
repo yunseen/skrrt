@@ -1,0 +1,111 @@
+{
+  "id": "reader-mode",
+  "category": "reading",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Reader Mode",
+    "ru": "Режим чтения"
+  },
+  "summary": {
+    "en": "A clean view of an article",
+    "ru": "Чистый вид статьи без лишнего"
+  },
+  "description": {
+    "en": "On pages that look like an article a Reader button appears. It opens the text in a calm full-screen view with your font, size and theme and without menus, banners and recommendations.",
+    "ru": "На страницах, похожих на статью, появляется кнопка «Чтение». Она открывает текст в спокойном полноэкранном виде с вашим шрифтом, размером и темой, без меню, баннеров и рекомендаций."
+  },
+  "icon": {
+    "symbol": "book.fill",
+    "color": "#FF9F0A"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "fontSize",
+      "type": "slider",
+      "title": {
+        "en": "Text size",
+        "ru": "Размер текста"
+      },
+      "default": 19,
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "pt"
+    },
+    {
+      "key": "theme",
+      "type": "choice",
+      "title": {
+        "en": "Theme",
+        "ru": "Тема"
+      },
+      "default": "auto",
+      "choices": [
+        {
+          "value": "auto",
+          "title": {
+            "en": "Match the app",
+            "ru": "Как приложение"
+          }
+        },
+        {
+          "value": "light",
+          "title": {
+            "en": "Light",
+            "ru": "Светлая"
+          }
+        },
+        {
+          "value": "sepia",
+          "title": {
+            "en": "Sepia",
+            "ru": "Сепия"
+          }
+        },
+        {
+          "value": "dark",
+          "title": {
+            "en": "Dark",
+            "ru": "Тёмная"
+          }
+        }
+      ]
+    },
+    {
+      "key": "font",
+      "type": "choice",
+      "title": {
+        "en": "Font",
+        "ru": "Шрифт"
+      },
+      "default": "serif",
+      "choices": [
+        {
+          "value": "serif",
+          "title": {
+            "en": "Serif",
+            "ru": "С засечками"
+          }
+        },
+        {
+          "value": "sans",
+          "title": {
+            "en": "Sans serif",
+            "ru": "Без засечек"
+          }
+        }
+      ]
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

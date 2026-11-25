@@ -1,0 +1,387 @@
+{
+  "format": 1,
+  "plugins": [
+    {
+      "id": "cookie-consent",
+      "version": "1.0.0",
+      "category": "privacy",
+      "kind": "script",
+      "name": {
+        "en": "Cookie Consent",
+        "ru": "Окна cookie"
+      },
+      "summary": {
+        "en": "Hides cookie banners or answers them for you",
+        "ru": "Прячет окна cookie или отвечает на них за вас"
+      },
+      "icon": {
+        "symbol": "shield.lefthalf.filled",
+        "color": "#34C759"
+      },
+      "author": "Skrrt",
+      "featured": true,
+      "path": "plugins/cookie-consent"
+    },
+    {
+      "id": "sponsorblock",
+      "version": "1.0.0",
+      "category": "video",
+      "kind": "script",
+      "name": {
+        "en": "SponsorBlock",
+        "ru": "SponsorBlock"
+      },
+      "summary": {
+        "en": "Skips sponsor segments in YouTube videos",
+        "ru": "Пропускает рекламные вставки в видео YouTube"
+      },
+      "icon": {
+        "symbol": "forward.end.fill",
+        "color": "#FF453A",
+        "logoHost": "sponsor.ajay.app"
+      },
+      "author": "Skrrt",
+      "featured": true,
+      "path": "plugins/sponsorblock"
+    },
+    {
+      "id": "youtube-ads",
+      "version": "1.0.0",
+      "category": "video",
+      "kind": "script",
+      "name": {
+        "en": "YouTube Ad Skipper",
+        "ru": "Без рекламы на YouTube"
+      },
+      "summary": {
+        "en": "Hides ad slots and skips video ads",
+        "ru": "Прячет рекламные блоки и пропускает рекламу"
+      },
+      "icon": {
+        "symbol": "play.rectangle.fill",
+        "color": "#FF3B30",
+        "logoHost": "youtube.com"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/youtube-ads"
+    },
+    {
+      "id": "return-youtube-dislike",
+      "version": "1.0.0",
+      "category": "video",
+      "kind": "script",
+      "name": {
+        "en": "Return YouTube Dislike",
+        "ru": "Дизлайки YouTube"
+      },
+      "summary": {
+        "en": "Shows likes and dislikes of the video",
+        "ru": "Показывает лайки и дизлайки видео"
+      },
+      "icon": {
+        "symbol": "hand.thumbsdown.fill",
+        "color": "#FF9F0A",
+        "logoHost": "returnyoutubedislike.com"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/return-youtube-dislike"
+    },
+    {
+      "id": "youtube-shorts",
+      "version": "1.0.0",
+      "category": "video",
+      "kind": "style",
+      "name": {
+        "en": "Hide YouTube Shorts",
+        "ru": "Без Shorts на YouTube"
+      },
+      "summary": {
+        "en": "Removes Shorts from the feed and the menu",
+        "ru": "Убирает Shorts из ленты и меню"
+      },
+      "icon": {
+        "symbol": "rectangle.portrait.slash",
+        "color": "#FF453A",
+        "logoHost": "youtube.com"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/youtube-shorts"
+    },
+    {
+      "id": "video-speed",
+      "version": "1.0.0",
+      "category": "video",
+      "kind": "script",
+      "name": {
+        "en": "Video Speed",
+        "ru": "Скорость видео"
+      },
+      "summary": {
+        "en": "A floating control for playback speed",
+        "ru": "Плавающая кнопка скорости воспроизведения"
+      },
+      "icon": {
+        "symbol": "speedometer",
+        "color": "#0A84FF"
+      },
+      "author": "Skrrt",
+      "featured": true,
+      "path": "plugins/video-speed"
+    },
+    {
+      "id": "picture-in-picture",
+      "version": "1.0.0",
+      "category": "video",
+      "kind": "script",
+      "name": {
+        "en": "Picture in Picture",
+        "ru": "Картинка в картинке"
+      },
+      "summary": {
+        "en": "Moves a video into a floating window",
+        "ru": "Переносит видео в плавающее окно"
+      },
+      "icon": {
+        "symbol": "pip",
+        "color": "#5E5CE6"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/picture-in-picture"
+    },
+    {
+      "id": "reader-mode",
+      "version": "1.0.0",
+      "category": "reading",
+      "kind": "script",
+      "name": {
+        "en": "Reader Mode",
+        "ru": "Режим чтения"
+      },
+      "summary": {
+        "en": "A clean view of an article",
+        "ru": "Чистый вид статьи без лишнего"
+      },
+      "icon": {
+        "symbol": "book.fill",
+        "color": "#FF9F0A"
+      },
+      "author": "Skrrt",
+      "featured": true,
+      "path": "plugins/reader-mode"
+    },
+    {
+      "id": "text-size",
+      "version": "1.0.0",
+      "category": "reading",
+      "kind": "script",
+      "name": {
+        "en": "Text Size",
+        "ru": "Размер текста"
+      },
+      "summary": {
+        "en": "Makes text larger or smaller on every site",
+        "ru": "Увеличивает или уменьшает текст на всех сайтах"
+      },
+      "icon": {
+        "symbol": "textformat.size",
+        "color": "#30B0C7"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/text-size"
+    },
+    {
+      "id": "night-shift",
+      "version": "1.0.0",
+      "category": "look",
+      "kind": "script",
+      "name": {
+        "en": "Night Shift",
+        "ru": "Ночной режим"
+      },
+      "summary": {
+        "en": "A warm tint that is easier on the eyes",
+        "ru": "Тёплый оттенок, который щадит глаза"
+      },
+      "icon": {
+        "symbol": "sun.haze.fill",
+        "color": "#FF9500"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/night-shift"
+    },
+    {
+      "id": "black-white",
+      "version": "1.0.0",
+      "category": "look",
+      "kind": "style",
+      "name": {
+        "en": "Black and White",
+        "ru": "Чёрно-белый режим"
+      },
+      "summary": {
+        "en": "Shows every page in grayscale",
+        "ru": "Показывает страницы без цвета"
+      },
+      "icon": {
+        "symbol": "circle.lefthalf.filled",
+        "color": "#8E8E93"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/black-white"
+    },
+    {
+      "id": "app-banners",
+      "version": "1.0.0",
+      "category": "privacy",
+      "kind": "style",
+      "name": {
+        "en": "App Banner Blocker",
+        "ru": "Баннеры «в приложении»"
+      },
+      "summary": {
+        "en": "Hides \"open in the app\" banners",
+        "ru": "Прячет баннеры «откройте в приложении»"
+      },
+      "icon": {
+        "symbol": "app.badge.checkmark",
+        "color": "#AF52DE"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/app-banners"
+    },
+    {
+      "id": "link-cleaner",
+      "version": "1.0.0",
+      "category": "privacy",
+      "kind": "script",
+      "name": {
+        "en": "Link Cleaner",
+        "ru": "Чистые ссылки"
+      },
+      "summary": {
+        "en": "Removes tracking from links",
+        "ru": "Убирает слежку из ссылок"
+      },
+      "icon": {
+        "symbol": "link",
+        "color": "#34C759"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/link-cleaner"
+    },
+    {
+      "id": "overlay-remover",
+      "version": "1.0.0",
+      "category": "privacy",
+      "kind": "script",
+      "name": {
+        "en": "Overlay Remover",
+        "ru": "Без навязчивых окон"
+      },
+      "summary": {
+        "en": "Removes full-screen subscribe walls",
+        "ru": "Убирает полноэкранные окна подписки"
+      },
+      "icon": {
+        "symbol": "xmark.rectangle.fill",
+        "color": "#FF3B30"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/overlay-remover"
+    },
+    {
+      "id": "allow-selection",
+      "version": "1.0.0",
+      "category": "tools",
+      "kind": "script",
+      "name": {
+        "en": "Allow Copy",
+        "ru": "Разрешить копирование"
+      },
+      "summary": {
+        "en": "Unlocks text selection and copying",
+        "ru": "Разблокирует выделение и копирование"
+      },
+      "icon": {
+        "symbol": "doc.on.clipboard",
+        "color": "#0A84FF"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/allow-selection"
+    },
+    {
+      "id": "same-tab",
+      "version": "1.0.0",
+      "category": "tools",
+      "kind": "script",
+      "name": {
+        "en": "Same Tab",
+        "ru": "Ссылки в той же вкладке"
+      },
+      "summary": {
+        "en": "Stops links from opening new windows",
+        "ru": "Не даёт ссылкам открываться в новых окнах"
+      },
+      "icon": {
+        "symbol": "arrow.up.right.square",
+        "color": "#5E5CE6"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/same-tab"
+    },
+    {
+      "id": "unstick-headers",
+      "version": "1.0.0",
+      "category": "tools",
+      "kind": "script",
+      "name": {
+        "en": "Unstick Headers",
+        "ru": "Открепить шапки"
+      },
+      "summary": {
+        "en": "Gives the screen back from sticky bars",
+        "ru": "Возвращает место, занятое закреплёнными панелями"
+      },
+      "icon": {
+        "symbol": "pin.slash",
+        "color": "#FF9500"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/unstick-headers"
+    },
+    {
+      "id": "scroll-tools",
+      "version": "1.0.0",
+      "category": "tools",
+      "kind": "script",
+      "name": {
+        "en": "Scroll Tools",
+        "ru": "Помощник прокрутки"
+      },
+      "summary": {
+        "en": "Progress bar and jumps to the top and bottom",
+        "ru": "Полоса прогресса и переходы наверх и вниз"
+      },
+      "icon": {
+        "symbol": "arrow.up.arrow.down.circle.fill",
+        "color": "#30B0C7"
+      },
+      "author": "Skrrt",
+      "featured": false,
+      "path": "plugins/scroll-tools"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "id": "sponsorblock",
+  "category": "video",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "SponsorBlock",
+    "ru": "SponsorBlock"
+  },
+  "summary": {
+    "en": "Skips sponsor segments in YouTube videos",
+    "ru": "Пропускает рекламные вставки в видео YouTube"
+  },
+  "description": {
+    "en": "Uses the community database of SponsorBlock to skip paid promotions, self promotion, subscribe reminders, intros and outros in YouTube videos. Only the first four characters of a hashed video id are sent to the server, so it never learns which video you watch.",
+    "ru": "Использует общую базу SponsorBlock и пропускает платную рекламу, самопиар, просьбы подписаться, заставки и концовки в видео YouTube. На сервер уходят только первые четыре символа хэша идентификатора, поэтому он не знает, какое видео вы смотрите."
+  },
+  "icon": {
+    "symbol": "forward.end.fill",
+    "color": "#FF453A",
+    "logoHost": "sponsor.ajay.app"
+  },
+  "matches": [
+    "youtube.com"
+  ],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [
+      "sponsor.ajay.app"
+    ],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "categories",
+      "type": "multichoice",
+      "title": {
+        "en": "Skip these parts",
+        "ru": "Что пропускать"
+      },
+      "default": [
+        "sponsor",
+        "selfpromo",
+        "interaction"
+      ],
+      "choices": [
+        {
+          "value": "sponsor",
+          "title": {
+            "en": "Sponsor",
+            "ru": "Спонсор"
+          }
+        },
+        {
+          "value": "selfpromo",
+          "title": {
+            "en": "Self promotion",
+            "ru": "Самореклама"
+          }
+        },
+        {
+          "value": "interaction",
+          "title": {
+            "en": "Subscribe reminder",
+            "ru": "Просьба подписаться"
+          }
+        },
+        {
+          "value": "intro",
+          "title": {
+            "en": "Intro",
+            "ru": "Заставка"
+          }
+        },
+        {
+          "value": "outro",
+          "title": {
+            "en": "Outro",
+            "ru": "Концовка"
+          }
+        },
+        {
+          "value": "preview",
+          "title": {
+            "en": "Preview",
+            "ru": "Анонс"
+          }
+        }
+      ]
+    },
+    {
+      "key": "autoSkip",
+      "type": "toggle",
+      "title": {
+        "en": "Skip automatically",
+        "ru": "Пропускать автоматически"
+      },
+      "default": true
+    },
+    {
+      "key": "toast",
+      "type": "toggle",
+      "title": {
+        "en": "Show a message when skipping",
+        "ru": "Показывать сообщение при пропуске"
+      },
+      "default": true
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

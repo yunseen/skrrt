@@ -1,0 +1,48 @@
+{
+  "id": "return-youtube-dislike",
+  "category": "video",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Return YouTube Dislike",
+    "ru": "Дизлайки YouTube"
+  },
+  "summary": {
+    "en": "Shows likes and dislikes of the video",
+    "ru": "Показывает лайки и дизлайки видео"
+  },
+  "description": {
+    "en": "YouTube hides the dislike counter. This plugin brings it back as a small label on the video page, using data from returnyoutubedislikeapi.com. The dislike number is an estimate, like in the original extension.",
+    "ru": "YouTube скрыл счётчик дизлайков. Плагин возвращает его маленькой плашкой на странице видео по данным returnyoutubedislikeapi.com. Число дизлайков приблизительное, как и в оригинальном расширении."
+  },
+  "icon": {
+    "symbol": "hand.thumbsdown.fill",
+    "color": "#FF9F0A",
+    "logoHost": "returnyoutubedislike.com"
+  },
+  "matches": [
+    "youtube.com"
+  ],
+  "excludes": [],
+  "runAt": "end",
+  "permissions": {
+    "hosts": [
+      "returnyoutubedislikeapi.com"
+    ],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "showViews",
+      "type": "toggle",
+      "title": {
+        "en": "Show the view count too",
+        "ru": "Показывать ещё и просмотры"
+      },
+      "default": false
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

@@ -1,0 +1,70 @@
+{
+  "id": "cookie-consent",
+  "category": "privacy",
+  "kind": "script",
+  "file": "main.js",
+  "version": "1.0.0",
+  "name": {
+    "en": "Cookie Consent",
+    "ru": "Окна cookie"
+  },
+  "summary": {
+    "en": "Hides cookie banners or answers them for you",
+    "ru": "Прячет окна cookie или отвечает на них за вас"
+  },
+  "description": {
+    "en": "Cookie banners cover the page on almost every site. This plugin recognizes the popular consent platforms (OneTrust, Cookiebot, Didomi, Quantcast and more) and clicks the right button, and for everything else it looks for the banner by its text and hides it. Choose what it should do in the settings. You can turn it off for a single site from the site menu.",
+    "ru": "Окна cookie закрывают страницу почти на каждом сайте. Плагин узнаёт популярные платформы согласия (OneTrust, Cookiebot, Didomi, Quantcast и другие) и нажимает нужную кнопку, а всё остальное находит по тексту и прячет. В настройках выберите, как поступать. На отдельном сайте его можно выключить из меню сайта."
+  },
+  "icon": {
+    "symbol": "shield.lefthalf.filled",
+    "color": "#34C759"
+  },
+  "matches": [],
+  "excludes": [],
+  "runAt": "start",
+  "permissions": {
+    "hosts": [],
+    "tools": []
+  },
+  "options": [
+    {
+      "key": "mode",
+      "type": "choice",
+      "title": {
+        "en": "When a banner appears",
+        "ru": "Когда появляется окно"
+      },
+      "default": "reject",
+      "choices": [
+        {
+          "value": "hide",
+          "title": {
+            "en": "Only hide it",
+            "ru": "Только спрятать"
+          }
+        },
+        {
+          "value": "reject",
+          "title": {
+            "en": "Reject extra cookies",
+            "ru": "Отклонить лишние cookie"
+          }
+        },
+        {
+          "value": "accept",
+          "title": {
+            "en": "Accept all",
+            "ru": "Принять все"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Hiding never changes your choice on the site. Rejecting clicks the site's own reject button.",
+        "ru": "Скрытие ничего не решает за вас. Отклонение нажимает кнопку отказа на самом сайте."
+      }
+    }
+  ],
+  "author": "Skrrt",
+  "format": 1
+}

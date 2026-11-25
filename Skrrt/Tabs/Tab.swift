@@ -88,6 +88,10 @@ final class Tab: Identifiable {
         webView.goForward()
     }
 
+    func startElementPicker(language: String) {
+        webView.evaluateJavaScript(SiteRules.pickerSource(language: language), in: nil, in: PluginRuntime.world) { _ in }
+    }
+
     func expand() {
         setCompact(false)
     }
