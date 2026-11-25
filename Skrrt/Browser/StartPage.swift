@@ -84,7 +84,8 @@ struct StartPage: View {
             VStack(spacing: 8) {
                 icon(shortcut)
                     .frame(width: 60, height: 60)
-                    .glassEffect(.regular, in: tileShape)
+                    .contentShape(tileShape)
+                    .glassEffect(.regular.interactive(), in: tileShape)
                 if settings.showsTileTitles {
                     Text(verbatim: shortcut.title)
                         .font(.caption)
@@ -113,7 +114,8 @@ struct StartPage: View {
                     .font(.system(size: 22, weight: .semibold))
                     .foregroundStyle(labelColor)
                     .frame(width: 60, height: 60)
-                    .glassEffect(.regular, in: tileShape)
+                    .contentShape(tileShape)
+                    .glassEffect(.regular.interactive(), in: tileShape)
                 if settings.showsTileTitles {
                     Text("Add")
                         .font(.caption)

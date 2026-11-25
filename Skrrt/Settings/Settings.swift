@@ -14,6 +14,7 @@ final class Settings {
     var accent: AccentChoice { didSet { store(accent.rawValue, Key.accent) } }
     var customAccentHex: String { didSet { store(customAccentHex, Key.customAccentHex) } }
     var darkPages: DarkPages { didSet { store(darkPages.rawValue, Key.darkPages) } }
+    var smartDark: Bool { didSet { store(smartDark, Key.smartDark) } }
 
     var wallpaper: WallpaperStyle { didSet { store(wallpaper.rawValue, Key.wallpaper) } }
     var wallpaperBlur: Double { didSet { store(wallpaperBlur, Key.wallpaperBlur) } }
@@ -47,7 +48,8 @@ final class Settings {
 
         accent = AccentChoice(rawValue: defaults.string(forKey: Key.accent) ?? "") ?? .blue
         customAccentHex = defaults.string(forKey: Key.customAccentHex) ?? "0A84FF"
-        darkPages = DarkPages(rawValue: defaults.string(forKey: Key.darkPages) ?? "") ?? .off
+        darkPages = DarkPages(rawValue: defaults.string(forKey: Key.darkPages) ?? "") ?? .auto
+        smartDark = defaults.object(forKey: Key.smartDark) as? Bool ?? true
 
         wallpaper = WallpaperStyle(rawValue: defaults.string(forKey: Key.wallpaper) ?? "") ?? .curtain
         wallpaperBlur = defaults.object(forKey: Key.wallpaperBlur) as? Double ?? 6
@@ -115,6 +117,7 @@ final class Settings {
         static let accent = "settings.accent"
         static let customAccentHex = "settings.customAccentHex"
         static let darkPages = "settings.darkPages"
+        static let smartDark = "settings.smartDark"
         static let wallpaper = "settings.wallpaper"
         static let wallpaperBlur = "settings.wallpaperBlur"
         static let animatesWallpaper = "settings.animatesWallpaper"

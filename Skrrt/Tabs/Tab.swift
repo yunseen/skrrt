@@ -18,6 +18,7 @@ final class Tab: Identifiable {
     private(set) var isSecure = true
     private(set) var snapshot: UIImage?
     var isCompact = false
+    private(set) var topColor: UIColor = .systemBackground
     @ObservationIgnored var collapsesBars = true
 
     @ObservationIgnored var onVisit: (@MainActor (String, URL) -> Void)?
@@ -104,6 +105,9 @@ final class Tab: Identifiable {
         delegate.rewrite = { url in URLCleaner.rewrite(url, upgradeHTTPS: upgrade, stripTracking: strip) }
         let controller = webView.configuration.userContentController
         controller.removeAllUserScripts()
+        if settings.smartDark && settings.darkPages != .off {
+            controller.addUserScript(SmartDark.script)
+        }
         for script in scripts {
             controller.addUserScript(script)
         }
@@ -141,9 +145,10 @@ final class Tab: Identifiable {
             webView.observe(\.canGoBack) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
             webView.observe(\.canGoForward) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
             webView.observe(\.hasOnlySecureContent) { [weak self] _, _ in Task { @MainActor in self?.syncState() } },
+            webView.observe(\.themeColor) { [weak self] _, _ in Task { @MainActor in self?.refreshTopColor() } },
             webView.scrollView.observe(\.contentOffset, options: [.new]) { [weak self] _, change in
                 guard let offset = change.newValue?.y else { return }
-                Task { @MainActor in self?.scrolled(to: offset) }
+                MainActor.assumeIsolated { self?.scrolled(to: offset) }
             }
         ]
     }
@@ -156,8 +161,13 @@ final class Tab: Identifiable {
             url = current
             onChange?()
         }
-        progress = webView.estimatedProgress
-        isLoading = webView.isLoading
+        let newProgress = webView.estimatedProgress
+        if abs(newProgress - progress) >= 0.02 || newProgress >= 1 || newProgress == 0 {
+            progress = newProgress
+        }
+        if isLoading != webView.isLoading {
+            isLoading = webView.isLoading
+        }
         canGoBack = webView.canGoBack
         canGoForward = webView.canGoForward
         if url?.scheme?.lowercased() == "http" {
@@ -180,10 +190,64 @@ final class Tab: Identifiable {
             recordedURL = current
             onVisit?(displayTitle, current)
         }
+        refreshTopColor()
         Task {
-            try? await Task.sleep(for: .milliseconds(500))
+            try? await Task.sleep(for: .milliseconds(700))
+            refreshTopColor()
+            try? await Task.sleep(for: .milliseconds(1300))
+            refreshTopColor()
             await captureSnapshot()
         }
+    }
+
+    private static let colorProbe = """
+    (function(){var b=document.body,h=document.documentElement;
+    function c(e){return e?getComputedStyle(e).backgroundColor:'';}
+    var v=c(b);
+    if(!v||v==='transparent'||/rgba\\([^)]*,\\s*0\\)/.test(v))v=c(h);
+    return v+'|'+(h.hasAttribute('data-skrrt-dark')?'1':'0');})()
+    """
+
+    /// Colors the area behind the status bar like the page, the way Safari does.
+    func refreshTopColor() {
+        guard url != nil else {
+            topColor = .systemBackground
+            return
+        }
+        webView.evaluateJavaScript(Self.colorProbe) { [weak self] result, _ in
+            guard let text = result as? String else { return }
+            MainActor.assumeIsolated { self?.applyProbe(text) }
+        }
+    }
+
+    private func applyProbe(_ text: String) {
+        let parts = text.split(separator: "|", omittingEmptySubsequences: false)
+        let inverted = parts.count > 1 && parts[1] == "1"
+        if !inverted, let theme = webView.themeColor {
+            setTopColor(theme)
+            return
+        }
+        let numbers = (parts.first.map(String.init) ?? "")
+            .components(separatedBy: CharacterSet(charactersIn: "0123456789.").inverted)
+            .filter { !$0.isEmpty }
+            .compactMap(Double.init)
+        guard numbers.count >= 3, (numbers.count < 4 || numbers[3] >= 0.1) else {
+            setTopColor(.systemBackground)
+            return
+        }
+        var red = numbers[0], green = numbers[1], blue = numbers[2]
+        if inverted {
+            red = 255 - red
+            green = 255 - green
+            blue = 255 - blue
+        }
+        setTopColor(UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1))
+    }
+
+    private func setTopColor(_ color: UIColor) {
+        guard color != topColor else { return }
+        topColor = color
+        webView.underPageBackgroundColor = color
     }
 
     private func scrolled(to offset: CGFloat) {

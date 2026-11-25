@@ -4,8 +4,10 @@ struct AddressBar: View {
     let tab: Tab
     let openSearch: () -> Void
 
+    @Environment(Settings.self) private var settings
+
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 8) {
             Image(systemName: leadingSymbol)
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundStyle(tab.url != nil && tab.isSecure ? Color.accentColor : Color.secondary)
@@ -14,7 +16,8 @@ struct AddressBar: View {
         }
         .padding(.horizontal, 18)
         .frame(height: tab.isCompact ? 40 : 52)
-        .glassEffect(.regular, in: .capsule)
+        .contentShape(Capsule())
+        .glassEffect(.regular.interactive(), in: .capsule)
         .overlay(alignment: .bottomLeading) { progressBar }
         .simultaneousGesture(
             DragGesture(minimumDistance: 14).onEnded { value in
@@ -45,11 +48,26 @@ struct AddressBar: View {
     @ViewBuilder
     private var trailing: some View {
         if tab.url != nil && !tab.isCompact {
+            if settings.showsShield {
+                Button {
+                    settings.blocksContent.toggle()
+                } label: {
+                    Image(systemName: shieldSymbol)
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundStyle(shieldColor)
+                        .frame(width: 34, height: 34)
+                        .contentShape(Circle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(Text(shieldLabel))
+            }
             Button {
                 if tab.isLoading { tab.stop() } else { tab.reload() }
             } label: {
                 Image(systemName: tab.isLoading ? "xmark" : "arrow.clockwise")
                     .font(.system(size: 15, weight: .semibold))
+                    .frame(width: 34, height: 34)
+                    .contentShape(Circle())
             }
             .buttonStyle(.plain)
         }
@@ -72,6 +90,24 @@ struct AddressBar: View {
     private var leadingSymbol: String {
         guard tab.url != nil else { return "magnifyingglass" }
         return tab.isSecure ? "lock.fill" : "exclamationmark.triangle.fill"
+    }
+
+    private var shieldSymbol: String {
+        if tab.isPrivate { return "eye.slash.fill" }
+        if !tab.isSecure { return "exclamationmark.shield.fill" }
+        return settings.blocksContent ? "checkmark.shield.fill" : "shield.slash.fill"
+    }
+
+    private var shieldColor: Color {
+        if tab.isPrivate { return .accentColor }
+        if !tab.isSecure { return .orange }
+        return settings.blocksContent ? .accentColor : .secondary
+    }
+
+    private var shieldLabel: LocalizedStringKey {
+        if tab.isPrivate { return "Private" }
+        if !tab.isSecure { return "Not Secure" }
+        return settings.blocksContent ? "Protected" : "Shield Off"
     }
 
     private func begin() {

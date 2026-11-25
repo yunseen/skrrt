@@ -81,6 +81,14 @@ struct AppearanceSettings: View {
             } footer: {
                 Text("Off keeps websites in their normal colors. Match App and Always ask them for a dark version.")
             }
+
+            Section {
+                Toggle(isOn: $settings.smartDark) {
+                    IconLabel("Smart Dark Mode", "moon.stars.fill", Color(red: 0.62, green: 0.45, blue: 1))
+                }
+            } footer: {
+                Text("Darkens pages that have no dark theme of their own and keeps photos and video in their real colors.")
+            }
         }
         .navigationTitle("Appearance")
         .navigationBarTitleDisplayMode(.inline)

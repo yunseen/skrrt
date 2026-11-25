@@ -32,28 +32,48 @@ enum WallpaperStorage {
     }
 }
 
+private struct WallpaperPausedKey: EnvironmentKey {
+    static let defaultValue = false
+}
+
+extension EnvironmentValues {
+    /// True while another screen covers the wallpaper, so it can stop animating and save battery.
+    var wallpaperPaused: Bool {
+        get { self[WallpaperPausedKey.self] }
+        set { self[WallpaperPausedKey.self] = newValue }
+    }
+}
+
 struct WallpaperView: View {
     @Environment(Settings.self) private var settings
+    @Environment(\.wallpaperPaused) private var paused
+    @Environment(\.scenePhase) private var scenePhase
+
+    private var animated: Bool {
+        settings.animatesWallpaper && !paused && scenePhase == .active
+    }
 
     var body: some View {
         content
+            .drawingGroup()
             .blur(radius: settings.wallpaperBlur, opaque: true)
             .scaleEffect(settings.wallpaperBlur > 0 ? 1.12 : 1)
             .clipped()
             .ignoresSafeArea()
+            .allowsHitTesting(false)
     }
 
     @ViewBuilder
     private var content: some View {
         switch settings.wallpaper {
         case .curtain:
-            CurtainWallpaper(animated: settings.animatesWallpaper)
+            CurtainWallpaper(animated: animated)
         case .ice:
-            IceWallpaper(animated: settings.animatesWallpaper)
+            IceWallpaper(animated: animated)
         case .aurora:
             AuroraBackground()
         case .photo:
-            PhotoWallpaper(animated: settings.animatesWallpaper, revision: settings.photoRevision)
+            PhotoWallpaper(animated: animated, revision: settings.photoRevision)
         }
     }
 }

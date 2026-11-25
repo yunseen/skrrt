@@ -7,7 +7,6 @@ struct ToolbarRow: View {
     let addBookmark: () -> Void
 
     @Environment(TabStore.self) private var tabs
-    @Environment(Settings.self) private var settings
 
     var body: some View {
         HStack(spacing: 0) {
@@ -32,9 +31,10 @@ struct ToolbarRow: View {
                 Image(systemName: "square.and.arrow.up")
                     .font(.system(size: Metrics.symbolSize, weight: .semibold))
                     .frame(width: Metrics.controlSize, height: Metrics.controlSize)
-                    .glassEffect(.regular, in: .circle)
+                    .contentShape(Circle())
+                    .glassEffect(.regular.interactive(), in: .circle)
             }
-            .buttonStyle(PressStyle())
+            .buttonStyle(.plain)
         } else {
             GlassIconButton(symbol: "square.and.arrow.up", isEnabled: false) {}
         }
@@ -51,9 +51,10 @@ struct ToolbarRow: View {
                     .contentTransition(.numericText())
             }
             .frame(width: Metrics.controlSize, height: Metrics.controlSize)
-            .glassEffect(.regular, in: .circle)
+            .contentShape(Circle())
+            .glassEffect(.regular.interactive(), in: .circle)
         }
-        .buttonStyle(PressStyle())
+        .buttonStyle(.plain)
         .animation(.smooth, value: tabs.tabs.count)
     }
 
@@ -70,6 +71,7 @@ struct ToolbarRow: View {
             Image(systemName: "ellipsis")
                 .font(.system(size: Metrics.symbolSize, weight: .semibold))
                 .frame(width: Metrics.controlSize, height: Metrics.controlSize)
+                .contentShape(Circle())
                 .glassEffect(.regular, in: .circle)
         }
         .menuStyle(.button)

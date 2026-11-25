@@ -16,6 +16,7 @@ struct TabSwitcherView: View {
         ZStack {
             Palette.background.ignoresSafeArea()
             WallpaperView()
+                .environment(\.wallpaperPaused, true)
             ScrollView {
                 if visible.isEmpty {
                     ContentUnavailableView(
@@ -71,9 +72,10 @@ struct TabSwitcherView: View {
                     .foregroundStyle(.white)
                     .padding(.horizontal, 26)
                     .frame(height: Metrics.controlSize)
-                    .glassEffect(.regular.tint(Color.accentColor), in: .capsule)
+                    .contentShape(Capsule())
+                    .glassEffect(.regular.tint(Color.accentColor).interactive(), in: .capsule)
             }
-            .buttonStyle(PressStyle())
+            .buttonStyle(.plain)
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 6)
