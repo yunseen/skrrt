@@ -1240,6 +1240,866 @@
           }
         }
       }
+    },
+    "Plugins": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Плагины"
+          }
+        }
+      }
+    },
+    "Add Plugin": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавить плагин"
+          }
+        }
+      }
+    },
+    "All": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Все"
+          }
+        }
+      }
+    },
+    "Enabled": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Включённые"
+          }
+        }
+      }
+    },
+    "Mine": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мои"
+          }
+        }
+      }
+    },
+    "Show": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показать"
+          }
+        }
+      }
+    },
+    "No Plugins": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет плагинов"
+          }
+        }
+      }
+    },
+    "Add a script or a style to see it here.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавьте скрипт или стиль, и он появится здесь."
+          }
+        }
+      }
+    },
+    "Documentation": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Документация"
+          }
+        }
+      }
+    },
+    "Web Inspector": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Веб-инспектор"
+          }
+        }
+      }
+    },
+    "For Developers": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Для разработчиков"
+          }
+        }
+      }
+    },
+    "Plugins use the Skrrt API described in the documentation. Turn on Web Inspector to debug pages from Safari on a Mac.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Плагины используют Skrrt API из документации. Включите веб-инспектор, чтобы отлаживать страницы из Safari на Mac."
+          }
+        }
+      }
+    },
+    "Import from Files": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Импорт из Файлов"
+          }
+        }
+      }
+    },
+    "Import from Link": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Импорт по ссылке"
+          }
+        }
+      }
+    },
+    "New Script": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Новый скрипт"
+          }
+        }
+      }
+    },
+    "New Style": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Новый стиль"
+          }
+        }
+      }
+    },
+    "Could not read the file.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось прочитать файл."
+          }
+        }
+      }
+    },
+    "Rename": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Переименовать"
+          }
+        }
+      }
+    },
+    "%lld of %lld enabled": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Включено %lld из %lld"
+          }
+        }
+      }
+    },
+    "Scripts and styles that change how websites look and work.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрипты и стили, которые меняют внешний вид и работу сайтов."
+          }
+        }
+      }
+    },
+    "Duplicate": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дублировать"
+          }
+        }
+      }
+    },
+    "Share": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поделиться"
+          }
+        }
+      }
+    },
+    "New Plugin": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Новый плагин"
+          }
+        }
+      }
+    },
+    "Edit Plugin": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изменить плагин"
+          }
+        }
+      }
+    },
+    "Description (optional)": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Описание (необязательно)"
+          }
+        }
+      }
+    },
+    "Icon": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Иконка"
+          }
+        }
+      }
+    },
+    "Websites": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сайты"
+          }
+        }
+      }
+    },
+    "Exclude, one per line": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Исключить, по одному в строке"
+          }
+        }
+      }
+    },
+    "Run Before the Page Loads": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Запускать до загрузки страницы"
+          }
+        }
+      }
+    },
+    "One address per line. Leave empty to run on every site. Wildcards like *.example.com work.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Один адрес в строке. Оставьте пустым, чтобы работало на всех сайтах. Маски вроде *.example.com работают."
+          }
+        }
+      }
+    },
+    "Import": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Импорт"
+          }
+        }
+      }
+    },
+    "Could not download the plugin. Check the link.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось скачать плагин. Проверьте ссылку."
+          }
+        }
+      }
+    },
+    "Paste a link to a .js or .css file. Only import plugins you trust.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вставьте ссылку на файл .js или .css. Импортируйте только плагины, которым доверяете."
+          }
+        }
+      }
+    },
+    "%@ copy": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ (копия)"
+          }
+        }
+      }
+    },
+    "Look": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вид"
+          }
+        }
+      }
+    },
+    "Video": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Видео"
+          }
+        }
+      }
+    },
+    "Reading": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чтение"
+          }
+        }
+      }
+    },
+    "Tools": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Инструменты"
+          }
+        }
+      }
+    },
+    "My Plugins": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мои плагины"
+          }
+        }
+      }
+    },
+    "Night Shift": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ночной режим"
+          }
+        }
+      }
+    },
+    "Grayscale": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чёрно-белый режим"
+          }
+        }
+      }
+    },
+    "Reduce Motion": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Меньше анимации"
+          }
+        }
+      }
+    },
+    "Remove Pop-up Overlays": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убрать всплывающие окна"
+          }
+        }
+      }
+    },
+    "Clean Links": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чистые ссылки"
+          }
+        }
+      }
+    },
+    "YouTube Ad Skipper": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пропуск рекламы YouTube"
+          }
+        }
+      }
+    },
+    "Video Speed Control": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скорость видео"
+          }
+        }
+      }
+    },
+    "Block Video Autoplay": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Без автозапуска видео"
+          }
+        }
+      }
+    },
+    "Reading Mode": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим чтения"
+          }
+        }
+      }
+    },
+    "Bigger Text": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Крупный текст"
+          }
+        }
+      }
+    },
+    "Text Only": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Только текст"
+          }
+        }
+      }
+    },
+    "Allow Copy and Selection": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разрешить копирование"
+          }
+        }
+      }
+    },
+    "Open Links in Same Tab": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ссылки в той же вкладке"
+          }
+        }
+      }
+    },
+    "Unstick Headers": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открепить шапки"
+          }
+        }
+      }
+    },
+    "Back to Top Button": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кнопка «Наверх»"
+          }
+        }
+      }
+    },
+    "Warm, eye-friendly tint over every page": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тёплый оттенок поверх страниц, щадящий глаза"
+          }
+        }
+      }
+    },
+    "Shows every page in black and white": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показывает страницы в чёрно-белом цвете"
+          }
+        }
+      }
+    },
+    "Turns off animations and smooth scrolling": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отключает анимации и плавную прокрутку"
+          }
+        }
+      }
+    },
+    "Removes full-screen subscribe and newsletter walls": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убирает полноэкранные окна подписки и рассылок"
+          }
+        }
+      }
+    },
+    "Removes tracking pings and search engine redirects": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убирает трекинг-пинги и редиректы поисковиков"
+          }
+        }
+      }
+    },
+    "Hides ad slots and skips video ads on YouTube": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прячет рекламные блоки и пропускает рекламу на YouTube"
+          }
+        }
+      }
+    },
+    "A floating button that changes playback speed": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Плавающая кнопка смены скорости воспроизведения"
+          }
+        }
+      }
+    },
+    "Stops videos that start playing on their own": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Останавливает видео, которые запускаются сами"
+          }
+        }
+      }
+    },
+    "A calm, narrow layout with serif text": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Спокойная узкая вёрстка со шрифтом с засечками"
+          }
+        }
+      }
+    },
+    "Makes text 25 percent larger on every site": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Увеличивает текст на 25% на всех сайтах"
+          }
+        }
+      }
+    },
+    "Hides images and video to save data": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прячет картинки и видео, чтобы экономить трафик"
+          }
+        }
+      }
+    },
+    "Unlocks text selection and the context menu": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разблокирует выделение текста и контекстное меню"
+          }
+        }
+      }
+    },
+    "Stops links from opening new windows": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не даёт ссылкам открываться в новых окнах"
+          }
+        }
+      }
+    },
+    "Turns fixed top bars into normal page content": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Превращает закреплённые верхние панели в обычное содержимое"
+          }
+        }
+      }
+    },
+    "A round button that scrolls to the top": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Круглая кнопка прокрутки наверх"
+          }
+        }
+      }
+    },
+    "Privacy and Security": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Приватность и безопасность"
+          }
+        }
+      }
+    },
+    "Browsing": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Просмотр"
+          }
+        }
+      }
+    },
+    "Remove Photo": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Убрать фото"
+          }
+        }
+      }
+    },
+    "Columns": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Колонки"
+          }
+        }
+      }
+    },
+    "Shortcuts": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ярлыки"
+          }
+        }
+      }
+    },
+    "Accent Color": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цвет акцента"
+          }
+        }
+      }
+    },
+    "Protection": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Защита"
+          }
+        }
+      }
+    },
+    "Data": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Данные"
+          }
+        }
+      }
+    },
+    "JavaScript": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "JavaScript"
+          }
+        }
+      }
+    },
+    "Tracking parameters are links like utm_source or fbclid. Pop-ups opened by a tap on a link are still allowed.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Трекинг-параметры — это utm_source, fbclid и подобные. Окна, которые открываются нажатием на ссылку, по-прежнему разрешены."
+          }
+        }
+      }
+    },
+    "Turning JavaScript off breaks many sites and stops plugins from running.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Без JavaScript многие сайты не работают, а плагины не запускаются."
+          }
+        }
+      }
+    },
+    "Restore Tabs on Launch": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Восстанавливать вкладки при запуске"
+          }
+        }
+      }
+    },
+    "Hide Bars While Scrolling": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скрывать панели при прокрутке"
+          }
+        }
+      }
+    },
+    "Show Protection Badge": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показывать значок защиты"
+          }
+        }
+      }
+    },
+    "Tabs and Pages": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вкладки и страницы"
+          }
+        }
+      }
+    },
+    "The protection badge sits under the Dynamic Island. Tap it to turn blocking on or off.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Значок защиты находится под Dynamic Island. Нажмите на него, чтобы включить или выключить блокировку."
+          }
+        }
+      }
+    },
+    "Plugin API": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API плагинов"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

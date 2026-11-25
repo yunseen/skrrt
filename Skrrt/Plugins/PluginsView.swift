@@ -2,7 +2,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 enum PluginDocs {
-    static let url = URL(string: "https://telegra.ph/Skrrt-Plugins-API-11-25")!
+    static let url = URL(string: "https://telegra.ph/Skrrt-plaginy-i-API-CSS-JavaScript-11-25")!
 }
 
 struct PluginsView: View {
