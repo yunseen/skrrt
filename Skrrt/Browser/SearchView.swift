@@ -77,11 +77,8 @@ struct SearchView: View {
         let visited = tab.isPrivate ? [] : history.prefix(6).map { (title: $0.title, url: $0.url, symbol: "clock") }
         let combined = Array((saved + visited).prefix(8))
         if combined.isEmpty {
-            Text("Type a search or a website address")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 40)
+            EmptyState(emoji: Emoji.monocle, title: "Type a search or a website address")
+                .padding(.vertical, 20)
         } else {
             ForEach(Array(combined.enumerated()), id: \.offset) { _, item in
                 if let url = item.url {

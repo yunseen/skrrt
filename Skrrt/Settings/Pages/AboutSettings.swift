@@ -21,7 +21,18 @@ struct AboutSettings: View {
                     }
                 }
             } footer: {
-                Text("Skrrt is free software released under the GPL-3.0 license.")
+                HStack(spacing: 6) {
+                    Text("Skrrt is free software released under the GPL-3.0 license.")
+                    AnimatedEmoji(index: Emoji.heart)
+                        .frame(width: 22, height: 22)
+                }
+            }
+            Section {
+                Text("Animated emoji: the AnimatedAsianEmoji pack. Developer logos: the Developer Emojis pack by @danulqua. They belong to their authors.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            } header: {
+                Text("Credits")
             }
         }
         .navigationTitle("About")

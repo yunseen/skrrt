@@ -50,10 +50,15 @@ struct BrowserView: View {
     @ViewBuilder
     private var toastView: some View {
         if let toast {
-            Text(toast)
-                .font(.system(size: 13, weight: .semibold))
-                .padding(.horizontal, 14)
-                .padding(.vertical, 8)
+            HStack(spacing: 6) {
+                AnimatedEmoji(index: Emoji.star)
+                    .frame(width: 22, height: 22)
+                Text(toast)
+                    .font(.system(size: 13, weight: .semibold))
+            }
+            .padding(.leading, 10)
+            .padding(.trailing, 14)
+            .padding(.vertical, 6)
                 .glassEffect(.regular, in: .capsule)
                 .padding(.bottom, 10)
                 .transition(.move(edge: .bottom).combined(with: .opacity))

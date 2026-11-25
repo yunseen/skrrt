@@ -44,7 +44,7 @@ struct LibraryView: View {
         switch mode {
         case .bookmarks:
             if filteredBookmarks.isEmpty {
-                ContentUnavailableView("No Bookmarks", systemImage: "star", description: Text("Saved pages appear here."))
+                EmptyState(emoji: Emoji.star, title: "No Bookmarks", message: "Saved pages appear here.")
             } else {
                 List {
                     ForEach(filteredBookmarks) { bookmark in
@@ -57,7 +57,7 @@ struct LibraryView: View {
             }
         case .history:
             if filteredHistory.isEmpty {
-                ContentUnavailableView("No History", systemImage: "clock", description: Text("Visited pages appear here."))
+                EmptyState(emoji: Emoji.yawning, title: "No History", message: "Visited pages appear here.")
             } else {
                 List {
                     ForEach(filteredHistory) { entry in

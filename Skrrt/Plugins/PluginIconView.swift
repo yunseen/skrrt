@@ -48,7 +48,19 @@ struct PluginIconView: View {
 
     var body: some View {
         Group {
-            if let logo {
+            if let emoji = icon.emoji {
+                AnimatedEmoji(index: emoji, animated: false)
+                    .padding(size * 0.1)
+                    .frame(width: size, height: size)
+                    .background(Color.primary.opacity(0.06))
+            } else if let devLogo = icon.devLogo, let image = EmojiLibrary.devLogo(devLogo) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(size * 0.1)
+                    .frame(width: size, height: size)
+                    .background(Color.primary.opacity(0.06))
+            } else if let logo {
                 Image(uiImage: logo)
                     .resizable()
                     .scaledToFill()
@@ -68,7 +80,7 @@ struct PluginIconView: View {
                 .strokeBorder(Color.primary.opacity(0.08), lineWidth: 1)
         }
         .task(id: icon.logoHost) {
-            guard let host = icon.logoHost else { return }
+            guard icon.emoji == nil, icon.devLogo == nil, let host = icon.logoHost else { return }
             if let cached = SiteIcons.shared.cached(host) {
                 logo = cached
             } else {

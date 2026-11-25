@@ -41,9 +41,8 @@ struct StartPage: View {
 
     private var privateHeader: some View {
         VStack(spacing: 14) {
-            Image(systemName: "eye.slash.fill")
-                .font(.system(size: 48, weight: .semibold))
-                .foregroundStyle(Color.accentColor)
+            AnimatedEmoji(index: Emoji.shush)
+                .frame(width: 96, height: 96)
             Text("Private Tab")
                 .font(.title2.weight(.bold))
                 .foregroundStyle(labelColor)
