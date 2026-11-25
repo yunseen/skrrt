@@ -196,10 +196,10 @@ struct HiddenElementsView: View {
     var body: some View {
         List {
             if selectors.isEmpty {
-                ContentUnavailableView(
-                    "Nothing Hidden",
-                    systemImage: "eye",
-                    description: Text("Use Hide an Element in the site window, then tap what you do not want to see.")
+                EmptyState(
+                    emoji: Emoji.seeNoEvil,
+                    title: "Nothing Hidden",
+                    message: "Use Hide an Element in the site window, then tap what you do not want to see."
                 )
                 .listRowBackground(Color.clear)
             } else {

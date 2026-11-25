@@ -28,12 +28,8 @@ struct CookieManagerView: View {
                 }
                 .listRowBackground(Color.clear)
             } else if cookies.isEmpty {
-                ContentUnavailableView(
-                    "No Cookies",
-                    systemImage: "circle.hexagongrid",
-                    description: Text("This site has not stored any cookies.")
-                )
-                .listRowBackground(Color.clear)
+                EmptyState(emoji: Emoji.food, title: "No Cookies", message: "This site has not stored any cookies.")
+                    .listRowBackground(Color.clear)
             } else {
                 Section {
                     ForEach(cookies, id: \.self) { cookie in

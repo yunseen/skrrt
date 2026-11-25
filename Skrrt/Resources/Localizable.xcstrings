@@ -2880,6 +2880,76 @@
           }
         }
       }
+    },
+    "Symbol": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Значок"
+          }
+        }
+      }
+    },
+    "Emoji": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Эмодзи"
+          }
+        }
+      }
+    },
+    "Logos": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Логотипы"
+          }
+        }
+      }
+    },
+    "No Results": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ничего не найдено"
+          }
+        }
+      }
+    },
+    "Try another word or a different category.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Попробуйте другое слово или другую категорию."
+          }
+        }
+      }
+    },
+    "Credits": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Благодарности"
+          }
+        }
+      }
+    },
+    "Animated emoji: the AnimatedAsianEmoji pack. Developer logos: the Developer Emojis pack by @danulqua. They belong to their authors.": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Анимированные эмодзи: набор AnimatedAsianEmoji. Логотипы разработчика: набор Developer Emojis от @danulqua. Они принадлежат своим авторам."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

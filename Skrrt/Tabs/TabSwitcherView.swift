@@ -19,10 +19,11 @@ struct TabSwitcherView: View {
                 .environment(\.wallpaperPaused, true)
             ScrollView {
                 if visible.isEmpty {
-                    ContentUnavailableView(
-                        showsPrivate ? "No Private Tabs" : "No Tabs",
-                        systemImage: showsPrivate ? "eye.slash" : "square.on.square"
+                    EmptyState(
+                        emoji: showsPrivate ? Emoji.shush : Emoji.sleepy,
+                        title: showsPrivate ? "No Private Tabs" : "No Tabs"
                     )
+                    .foregroundStyle(.white)
                     .padding(.top, 80)
                 } else {
                     LazyVGrid(columns: columns, spacing: 14) {

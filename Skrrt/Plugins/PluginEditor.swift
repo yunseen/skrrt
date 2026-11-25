@@ -16,6 +16,17 @@ struct PluginEditor: View {
     @State private var summary = ""
     @State private var icon = "curlybraces"
     @State private var colorHex = "#32ADE6"
+    @State private var emoji: Int?
+    @State private var devLogo: Int?
+    @State private var logoKind = LogoKind.symbol
+
+    private enum LogoKind: String, CaseIterable, Identifiable {
+        case symbol
+        case emoji
+        case dev
+
+        var id: String { rawValue }
+    }
     @State private var kind = Plugin.Kind.script
     @State private var sites = ""
     @State private var excluded = ""
@@ -31,12 +42,128 @@ struct PluginEditor: View {
 
     private let colors = ["#0A84FF", "#32ADE6", "#34C759", "#FF9F0A", "#FF453A", "#FF375F", "#BF5AF2", "#5E5CE6", "#8E8E93"]
 
+    private var symbolPicker: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(icons, id: \.self) { symbol in
+                        Button {
+                            icon = symbol
+                            emoji = nil
+                            devLogo = nil
+                        } label: {
+                            Image(systemName: symbol)
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundStyle(icon == symbol && emoji == nil && devLogo == nil ? Color.white : Color.primary)
+                                .frame(width: 44, height: 44)
+                                .background(
+                                    icon == symbol && emoji == nil && devLogo == nil ? Color.accentColor : Color.primary.opacity(0.08),
+                                    in: RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                )
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.vertical, 4)
+            }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(colors, id: \.self) { hex in
+                        Button {
+                            colorHex = hex
+                        } label: {
+                            Circle()
+                                .fill(Color(hex: hex) ?? .blue)
+                                .frame(width: 32, height: 32)
+                                .overlay {
+                                    if colorHex == hex {
+                                        Image(systemName: "checkmark")
+                                            .font(.system(size: 12, weight: .bold))
+                                            .foregroundStyle(.white)
+                                    }
+                                }
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.vertical, 4)
+            }
+        }
+    }
+
+    private var emojiGrid: some View {
+        ScrollView {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 6), spacing: 6) {
+                ForEach(0..<EmojiLibrary.count, id: \.self) { index in
+                    Button {
+                        emoji = index
+                        devLogo = nil
+                    } label: {
+                        AnimatedEmoji(index: index, animated: false)
+                            .frame(width: 44, height: 44)
+                            .padding(4)
+                            .background(
+                                emoji == index ? Color.accentColor.opacity(0.25) : Color.primary.opacity(0.06),
+                                in: RoundedRectangle(cornerRadius: 12, style: .continuous)
+                            )
+                            .overlay {
+                                if emoji == index {
+                                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                        .strokeBorder(Color.accentColor, lineWidth: 2)
+                                }
+                            }
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.vertical, 4)
+        }
+        .frame(height: 260)
+    }
+
+    private var devLogoGrid: some View {
+        ScrollView {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 6), spacing: 6) {
+                ForEach(0..<EmojiLibrary.devLogoCount, id: \.self) { index in
+                    Button {
+                        devLogo = index
+                        emoji = nil
+                    } label: {
+                        Group {
+                            if let image = EmojiLibrary.devLogo(index) {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFit()
+                            }
+                        }
+                        .frame(width: 44, height: 44)
+                        .padding(4)
+                        .background(
+                            devLogo == index ? Color.accentColor.opacity(0.25) : Color.primary.opacity(0.06),
+                            in: RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        )
+                        .overlay {
+                            if devLogo == index {
+                                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                    .strokeBorder(Color.accentColor, lineWidth: 2)
+                            }
+                        }
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.vertical, 4)
+        }
+        .frame(height: 260)
+    }
+
+
     var body: some View {
         NavigationStack {
             Form {
                 Section {
                     HStack(spacing: 14) {
-                        PluginIconView(icon: PluginIcon(symbol: icon, color: colorHex, logoHost: nil), size: 56)
+                        PluginIconView(icon: PluginIcon(symbol: icon, color: colorHex, logoHost: nil, emoji: emoji, devLogo: devLogo), size: 56)
                         VStack(spacing: 8) {
                             TextField("Name", text: $name)
                             TextField("Description (optional)", text: $summary)
@@ -49,47 +176,19 @@ struct PluginEditor: View {
                     .pickerStyle(.segmented)
                 }
                 Section {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
-                            ForEach(icons, id: \.self) { symbol in
-                                Button {
-                                    icon = symbol
-                                } label: {
-                                    Image(systemName: symbol)
-                                        .font(.system(size: 17, weight: .semibold))
-                                        .foregroundStyle(icon == symbol ? Color.white : Color.primary)
-                                        .frame(width: 44, height: 44)
-                                        .background(
-                                            icon == symbol ? Color.accentColor : Color.primary.opacity(0.08),
-                                            in: RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                        )
-                                }
-                                .buttonStyle(.plain)
-                            }
-                        }
-                        .padding(.vertical, 4)
+                    Picker("Logo", selection: $logoKind) {
+                        Text("Symbol").tag(LogoKind.symbol)
+                        Text("Emoji").tag(LogoKind.emoji)
+                        Text("Logos").tag(LogoKind.dev)
                     }
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
-                            ForEach(colors, id: \.self) { hex in
-                                Button {
-                                    colorHex = hex
-                                } label: {
-                                    Circle()
-                                        .fill(Color(hex: hex) ?? .blue)
-                                        .frame(width: 32, height: 32)
-                                        .overlay {
-                                            if colorHex == hex {
-                                                Image(systemName: "checkmark")
-                                                    .font(.system(size: 12, weight: .bold))
-                                                    .foregroundStyle(.white)
-                                            }
-                                        }
-                                }
-                                .buttonStyle(.plain)
-                            }
-                        }
-                        .padding(.vertical, 4)
+                    .pickerStyle(.segmented)
+                    switch logoKind {
+                    case .symbol:
+                        symbolPicker
+                    case .emoji:
+                        emojiGrid
+                    case .dev:
+                        devLogoGrid
                     }
                 } header: {
                     Text("Logo")
@@ -148,6 +247,9 @@ struct PluginEditor: View {
             summary = existing.summary.text("en")
             icon = existing.icon.symbol
             colorHex = existing.icon.color
+            emoji = existing.icon.emoji
+            devLogo = existing.icon.devLogo
+            logoKind = existing.icon.emoji != nil ? .emoji : (existing.icon.devLogo != nil ? .dev : .symbol)
             kind = existing.kind
             sites = existing.matches.joined(separator: "\n")
             excluded = existing.excludes.joined(separator: "\n")
@@ -170,7 +272,7 @@ struct PluginEditor: View {
             name: L10n(cleanName),
             summary: L10n(summary),
             details: L10n(summary),
-            icon: PluginIcon(symbol: icon, color: colorHex, logoHost: nil),
+            icon: PluginIcon(symbol: icon, color: colorHex, logoHost: nil, emoji: emoji, devLogo: devLogo),
             category: .mine,
             kind: kind,
             matches: lines(sites),

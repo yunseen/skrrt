@@ -79,6 +79,10 @@ struct PluginIcon: Codable, Equatable {
     var symbol: String
     var color: String
     var logoHost: String?
+    /// Number of a Telegram animated emoji, when the plugin uses one as its logo.
+    var emoji: Int?
+    /// Number of a developer logo (VS Code, GitHub, Chrome and so on).
+    var devLogo: Int?
 
     static let `default` = PluginIcon(symbol: "puzzlepiece.extension.fill", color: "#0A84FF", logoHost: nil)
 

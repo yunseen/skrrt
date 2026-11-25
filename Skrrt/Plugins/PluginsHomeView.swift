@@ -162,7 +162,7 @@ struct PluginsHomeView: View {
                             Spacer()
                         }
                     } else {
-                        ContentUnavailableView.search(text: query)
+                        EmptyState(emoji: Emoji.begging, title: "No Results", message: "Try another word or a different category.")
                             .listRowBackground(Color.clear)
                     }
                 }
@@ -221,11 +221,8 @@ struct PluginsHomeView: View {
     private var installedList: some View {
         List {
             if store.items.isEmpty {
-                ContentUnavailableView {
-                    Label("No Plugins Installed", systemImage: "puzzlepiece.extension")
-                } description: {
-                    Text("Get plugins from the store. They work in every tab.")
-                } actions: {
+                VStack(spacing: 14) {
+                    EmptyState(emoji: Emoji.thinking, title: "No Plugins Installed", message: "Get plugins from the store. They work in every tab.")
                     Button("Open the Store") { page = .store }
                         .buttonStyle(.borderedProminent)
                 }
